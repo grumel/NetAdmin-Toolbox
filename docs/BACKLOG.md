@@ -21,7 +21,7 @@ Work is ordered by priority. Complete P1 items before starting the next major fe
 - [x] Guard asynchronous route rendering against stale imports
 - [x] Add browser tests for live validation and keyboard operation
 - [x] Test clipboard API and fallback behavior
-- [ ] Add a restrictive Content Security Policy compatible with the application
+- [x] Add a restrictive Content Security Policy compatible with the application
 - [ ] Declare the supported Node.js version
 - [ ] Verify installation and offline behavior after cache-policy changes
 
