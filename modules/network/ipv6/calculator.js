@@ -64,8 +64,7 @@ export function classifyIPv6(value) {
   if (address === 0n) return "Unspecified";
   if (address === 1n) return "Loopback";
   if ((address >> 120n) === 0xffn) return "Multicast";
-  const firstSevenBits = address >> 121n;
-  if (firstSevenBits === 0x7en || firstSevenBits === 0x7fn) return "Unique local"; // fc00::/7
+  if ((address >> 121n) === 0x7en) return "Unique local"; // fc00::/7
   if ((address >> 118n) === 0x3fan) return "Link-local"; // fe80::/10
   if ((address >> 125n) === 1n) return "Global unicast"; // 2000::/3
   return "Special or reserved";
