@@ -27,8 +27,8 @@ Work is ordered by priority. Complete P1 items before starting the next major fe
 
 ## P3 — Product improvements
 
-- [ ] Add IPv6 calculator foundations without coupling IPv6 semantics to IPv4 helpers
-- [ ] Add CIDR, wildcard, VLSM, and route-summarisation tools from reusable pure functions
+- [x] Add IPv6 calculator foundations without coupling IPv6 semantics to IPv4 helpers
+- [x] Add CIDR, wildcard, VLSM, and route-summarisation tools from reusable pure functions
 - [ ] Add global tool search
 - [ ] Add favorites and recent tools
 - [ ] Add keyboard shortcuts and a command palette
