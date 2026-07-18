@@ -1,10 +1,13 @@
-const CACHE_NAME = "netadmin-toolbox-v3";
+const CACHE_NAME = "netadmin-toolbox-v4";
 const APP_SHELL = [
   "./", "index.html", "manifest.json", "assets/css/styles.css", "assets/js/app.js",
   "assets/js/router.js", "assets/js/theme.js", "assets/js/storage.js", "assets/icons/icon.svg",
   "modules/dashboard/index.js", "modules/network/index.js", "modules/cisco/index.js",
   "modules/windows/index.js", "modules/linux/index.js", "modules/security/index.js",
-  "modules/developer/index.js"
+  "modules/developer/index.js", "modules/network/ipv4/index.js",
+  "modules/network/ipv4/calculator.js", "modules/network/ipv4/validation.js",
+  "modules/network/ipv4/formatter.js", "modules/network/ipv4/helpers.js",
+  "modules/network/ipv4/style.css"
 ];
 
 self.addEventListener("install", (event) => {

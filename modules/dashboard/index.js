@@ -1,5 +1,6 @@
 const tools = [
-  ["network", "Network", "⌁", "Network diagnostics and address planning."],
+  ["ipv4", "IPv4 Calculator", "IP", "Calculate subnet boundaries, host ranges, masks, and address metadata."],
+  ["network", "Network Tools", "⌁", "Network diagnostics and address planning."],
   ["cisco", "Cisco", "◈", "Cisco-focused configuration helpers."],
   ["windows", "Windows", "⊞", "Windows administration utilities."],
   ["linux", "Linux", "◒", "Linux operations and system tools."],

@@ -1,0 +1,28 @@
+import { parseIPv4, parsePrefix, prefixFromNetmask } from "./helpers.js";
+
+const valid = (value) => ({ valid: true, value });
+const invalid = (message) => ({ valid: false, message, value: null });
+
+/** Pure validators return structured results so UIs can present errors consistently. */
+export function validateIPv4(value) {
+  const octets = parseIPv4(value);
+  return octets ? valid(octets) : invalid("Enter a valid IPv4 address, for example 192.168.1.42.");
+}
+
+export function validatePrefix(value) {
+  const prefix = parsePrefix(value);
+  return prefix === null ? invalid("Enter a prefix from /0 to /32.") : valid(prefix);
+}
+
+export function validateNetmask(value) {
+  const prefix = prefixFromNetmask(value);
+  return prefix === null ? invalid("Enter a contiguous netmask, for example 255.255.255.0.") : valid(prefix);
+}
+
+export function validateCalculationInput(addressValue, prefixValue) {
+  const address = validateIPv4(addressValue);
+  if (!address.valid) return address;
+  const prefix = validatePrefix(prefixValue);
+  if (!prefix.valid) return prefix;
+  return valid({ octets: address.value, prefix: prefix.value });
+}

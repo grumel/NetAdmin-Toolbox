@@ -1,6 +1,7 @@
 const routes = {
   dashboard: () => import("../../modules/dashboard/index.js"),
   network: () => import("../../modules/network/index.js"),
+  ipv4: () => import("../../modules/network/ipv4/index.js"),
   cisco: () => import("../../modules/cisco/index.js"),
   windows: () => import("../../modules/windows/index.js"),
   linux: () => import("../../modules/linux/index.js"),
@@ -25,4 +26,5 @@ export function renderNavigation(active) {
 export async function renderRoute(route, container) {
   const page = await routes[route]();
   container.innerHTML = page.render();
+  page.initialize?.(container);
 }
