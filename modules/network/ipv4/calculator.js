@@ -6,13 +6,18 @@ import { historicalAddressClass, IPV4_SPECIAL_USE_RANGES, ipv4ToInteger, isInAny
  */
 export function calculateSubnet(octets, prefix) {
   const mask = maskFromPrefix(prefix);
-  if (!Array.isArray(octets) || octets.length !== 4 || octets.some((octet) => !Number.isInteger(octet) || octet < 0 || octet > 255) || mask === null) return null;
-
   const address = ipv4ToInteger(octets);
+  if (address === null || mask === null) return null;
+
   const network = (address & mask) >>> 0;
   const broadcast = (network | (~mask >>> 0)) >>> 0;
   const totalAddresses = 2 ** (32 - prefix);
   const usableHosts = prefix === 32 ? 1 : prefix === 31 ? 2 : totalAddresses - 2;
+  const currentNetwork = isInAnySubnet(address, IPV4_SPECIAL_USE_RANGES.currentNetwork);
+  const sharedAddressSpace = isInAnySubnet(address, IPV4_SPECIAL_USE_RANGES.sharedAddressSpace);
+  const benchmarking = isInAnySubnet(address, IPV4_SPECIAL_USE_RANGES.benchmarking);
+  const futureReserved = isInAnySubnet(address, IPV4_SPECIAL_USE_RANGES.futureReserved);
+  const limitedBroadcast = isInAnySubnet(address, IPV4_SPECIAL_USE_RANGES.limitedBroadcast);
 
   return {
     address, prefix, mask, wildcard: (~mask) >>> 0, network, broadcast,
@@ -24,7 +29,12 @@ export function calculateSubnet(octets, prefix) {
     rfc3927: isInAnySubnet(address, IPV4_SPECIAL_USE_RANGES.rfc3927),
     loopback: isInAnySubnet(address, IPV4_SPECIAL_USE_RANGES.loopback),
     multicast: isInAnySubnet(address, IPV4_SPECIAL_USE_RANGES.multicast),
-    reserved: isInAnySubnet(address, IPV4_SPECIAL_USE_RANGES.reserved),
-    documentation: isInAnySubnet(address, IPV4_SPECIAL_USE_RANGES.documentation)
+    documentation: isInAnySubnet(address, IPV4_SPECIAL_USE_RANGES.documentation),
+    currentNetwork,
+    sharedAddressSpace,
+    benchmarking,
+    futureReserved,
+    limitedBroadcast,
+    reserved: currentNetwork || sharedAddressSpace || benchmarking || futureReserved || limitedBroadcast
   };
 }
