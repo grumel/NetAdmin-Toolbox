@@ -22,7 +22,7 @@ Work is ordered by priority. Complete P1 items before starting the next major fe
 - [x] Add browser tests for live validation and keyboard operation
 - [x] Test clipboard API and fallback behavior
 - [x] Add a restrictive Content Security Policy compatible with the application
-- [ ] Declare the supported Node.js version
+- [x] Declare the supported Node.js version
 - [ ] Verify installation and offline behavior after cache-policy changes
 
 ## P3 — Product improvements
