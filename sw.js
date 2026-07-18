@@ -1,4 +1,4 @@
-const CACHE_NAME = "netadmin-toolbox-v4";
+const CACHE_NAME = "netadmin-toolbox-v5";
 const APP_SHELL = [
   "./", "index.html", "manifest.json", "assets/css/styles.css", "assets/js/app.js",
   "assets/js/router.js", "assets/js/theme.js", "assets/js/storage.js", "assets/icons/icon.svg",
@@ -9,6 +9,7 @@ const APP_SHELL = [
   "modules/network/ipv4/formatter.js", "modules/network/ipv4/helpers.js",
   "modules/network/ipv4/style.css"
 ];
+const CACHEABLE_DESTINATIONS = new Set(["script", "style", "image", "font", "manifest"]);
 
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_SHELL)));
@@ -20,12 +21,28 @@ self.addEventListener("activate", (event) => {
   self.clients.claim();
 });
 
-// Cache-first keeps the app shell usable without a connection; navigation falls back to the shell.
+function mayCache(request, response) {
+  const url = new URL(request.url);
+  return url.origin === self.location.origin
+    && CACHEABLE_DESTINATIONS.has(request.destination)
+    && response.ok
+    && response.type === "basic";
+}
+
+// App-shell resources are cache-first. Navigations use the network and fall back to the shell.
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
+
+  if (event.request.mode === "navigate") {
+    event.respondWith(fetch(event.request).catch(() => caches.match("index.html")));
+    return;
+  }
+
   event.respondWith(caches.match(event.request).then((cached) => cached || fetch(event.request).then((response) => {
-    const copy = response.clone();
-    caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
+    if (mayCache(event.request, response)) {
+      const copy = response.clone();
+      event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy)));
+    }
     return response;
-  }).catch(() => event.request.mode === "navigate" ? caches.match("index.html") : Response.error())));
+  })));
 });
