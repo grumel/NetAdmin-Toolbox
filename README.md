@@ -34,7 +34,7 @@ NetAdmin Toolbox combines everyday administration utilities into a single, insta
 
 ## Development
 
-The supported development and test runtime is Node.js 24.18.0. Other Node.js 24 releases are supported when they satisfy the `package.json` engine range.
+The supported development and test runtime is Node.js 20 or newer, up to but not including Node.js 25. The `.nvmrc` file selects Node.js 20 for local development.
 
 With nvm:
 
