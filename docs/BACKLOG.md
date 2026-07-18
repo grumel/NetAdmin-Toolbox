@@ -4,17 +4,17 @@ Work is ordered by priority. Complete P1 items before starting the next major fe
 
 ## P1 — IPv4 hardening
 
-- [ ] Validate all exported IPv4 helper inputs or document strict preconditions
+- [x] Validate all exported IPv4 helper inputs or document strict preconditions
 - [x] Track validation state independently for IP address, prefix and netmask
 - [x] Associate field-specific errors with the relevant controls
 - [x] Stop announcing successful recalculation on every keystroke
 - [x] Improve light-theme error contrast
-- [ ] Detect unspecified and current-network ranges in `0.0.0.0/8`
-- [ ] Detect carrier-grade NAT `100.64.0.0/10`
-- [ ] Detect benchmarking range `198.18.0.0/15`
-- [ ] Document the meaning of reserved and special-purpose classifications
-- [ ] Add boundary tests for every prefix from `/0` through `/32`
-- [ ] Restrict service-worker runtime caching to approved static responses
+- [x] Detect unspecified and current-network ranges in `0.0.0.0/8`
+- [x] Detect carrier-grade NAT `100.64.0.0/10`
+- [x] Detect benchmarking range `198.18.0.0/15`
+- [x] Document the meaning of reserved and special-purpose classifications
+- [x] Add boundary tests for every prefix from `/0` through `/32`
+- [x] Restrict service-worker runtime caching to approved static responses
 
 ## P2 — Platform stability
 
