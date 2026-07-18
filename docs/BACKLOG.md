@@ -1,25 +1,6 @@
 # Backlog
 
-<<<<<<< HEAD
-## Highest priority
-
-1. Complete IPv4 Calculator hardening: precise validation states, accessible error messaging, browser tests, and user-facing guidance.
-2. Restrict service-worker runtime caching to intended successful public responses.
-3. Define supported browser versions and add a Content Security Policy appropriate for a static PWA.
-
-## Network suite
-
-- IPv6 calculator foundations that do not couple IPv6 semantics to IPv4 helpers.
-- CIDR, wildcard, VLSM, and route-summarisation tools built from reusable pure functions.
-
-## Cross-cutting work
-
-- Search, favourites, recently used tools, keyboard shortcuts, import/export, and settings.
-- End-to-end tests, accessibility audit, responsive review, and release automation.
-
-Items are ordered by value and risk, not by implementation effort. Architectural changes require an ADR; see [adr/](adr/).
-=======
-Work is ordered by priority. Complete P1 items before starting the next major feature.
+Work is ordered by priority. Complete P1 items before starting the next major feature. Items are ordered by value and risk, not by implementation effort. Architectural changes require an ADR; see [adr/](adr/).
 
 ## P1 — IPv4 hardening
 
@@ -46,11 +27,14 @@ Work is ordered by priority. Complete P1 items before starting the next major fe
 
 ## P3 — Product improvements
 
+- [ ] Add IPv6 calculator foundations without coupling IPv6 semantics to IPv4 helpers
+- [ ] Add CIDR, wildcard, VLSM, and route-summarisation tools from reusable pure functions
 - [ ] Add global tool search
 - [ ] Add favorites and recent tools
 - [ ] Add keyboard shortcuts and a command palette
-- [ ] Add structured export helpers
+- [ ] Add structured import and export helpers
 - [ ] Add localization infrastructure
+- [ ] Add end-to-end tests, an accessibility audit, responsive review, and release automation
 
 ## Rules
 
@@ -58,4 +42,3 @@ Work is ordered by priority. Complete P1 items before starting the next major fe
 - Add or update tests with every behavior change.
 - Update this backlog and the roadmap when work is completed.
 - Do not mark an item complete unless it meets [DEFINITION_OF_DONE.md](DEFINITION_OF_DONE.md).
->>>>>>> dde56c2a9eb22362e4d327c2dace76432dcad430
