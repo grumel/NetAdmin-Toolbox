@@ -32,6 +32,24 @@ NetAdmin Toolbox combines everyday administration utilities into a single, insta
 - Service Worker
 - Web App Manifest
 
+## Development
+
+The supported development and test runtime is Node.js 24.18.0. Other Node.js 24 releases are supported when they satisfy the `package.json` engine range.
+
+With nvm:
+
+```bash
+nvm install
+nvm use
+npm test
+```
+
+The application itself has no required runtime dependencies. Serve the repository through a local HTTP server for browser and PWA testing:
+
+```bash
+python3 -m http.server 8000
+```
+
 ## Roadmap
 
 ### v0.1
