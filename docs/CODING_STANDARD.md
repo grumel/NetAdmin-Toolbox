@@ -2,25 +2,24 @@
 
 ## JavaScript
 
-- Use browser-native ES modules and no runtime dependencies unless approved.
-- Prefer small, named functions with one responsibility.
-- Keep calculations, parsing, validation, and formatting pure; keep DOM access in module entry points.
-- Validate public helper inputs or document their preconditions.
-- Do not interpolate untrusted input into HTML; use `textContent` for dynamic text.
+- Use modern browser ES modules; introduce dependencies only through an approved ADR.
+- Prefer small named functions and immutable data. Public helpers validate inputs or document strict preconditions.
+- Keep parsing, validation, calculation, and formatting pure. Restrict DOM, clipboard, storage, and navigation APIs to module entry points.
+- Never interpolate untrusted input into HTML. Use `textContent` for dynamic values.
 
 ## UI and accessibility
 
-- Use semantic HTML, visible labels, keyboard-operable controls, and focus-visible states.
-- Associate errors with the relevant field and avoid unnecessary live-region announcements.
-- Support narrow screens first and both light and dark themes.
+- Use semantic elements, visible labels, keyboard-operable controls, and clear focus states.
+- Associate errors with the field that caused them; reserve live regions for actionable changes and errors.
+- Design mobile-first and verify both project themes.
 
-## Testing
+## Tests and quality
 
-- Add unit tests for all pure functions, including boundary values and invalid inputs.
-- Run `npm test` and `git diff --check` before handoff.
-- Add browser tests for interactive workflows when a tool has DOM behaviour.
+- Add unit tests for every pure public function, boundary value, and invalid input.
+- Run `npm test` and `git diff --check` before requesting review.
+- Add browser tests when a change introduces interactive behaviour.
 
-## Git
+## Git and documentation
 
-- Keep commits focused and use conventional commit messages.
-- Do not commit generated files, credentials, or unrelated worktree changes.
+- Keep commits focused, use conventional commit messages, and do not include credentials or unrelated changes.
+- Update relevant user, architecture, test, and release documentation with the same change.

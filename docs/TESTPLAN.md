@@ -1,26 +1,23 @@
 # Test Plan
 
-## Unit tests
+## Automated checks
 
-Run the dependency-free test suite:
+Run the complete dependency-free suite with:
 
 ```bash
 npm test
+git diff --check
 ```
 
-Pure network helpers must cover valid input, invalid input, `/0`, `/31`, `/32`, netmask conversion, subnet boundaries, and special-use ranges.
+IPv4 tests cover parsing, prefixes, netmasks, subnet bounds, `/0`, `/31`, `/32`, special-use ranges, validation, and formatting. New pure helpers require equivalent coverage.
 
-## Manual calculator checks
+## Manual acceptance checks
 
-1. Enter `192.168.1.42` with `/24`; verify network `192.168.1.0` and broadcast `192.168.1.255`.
-2. Enter a valid netmask and verify that the prefix synchronizes.
-3. Enter malformed address and netmask values; verify precise, accessible errors and disabled copy actions.
-4. Verify Example, Clear, per-field copy, and Copy all with keyboard only.
-5. Test mobile layout, dark mode, light mode, online/offline state, and installed-PWA mode.
+1. Calculate `192.168.1.42/24` and verify network `192.168.1.0` and broadcast `192.168.1.255`.
+2. Enter a contiguous netmask and verify prefix synchronisation; then enter invalid values and verify precise errors and disabled copy actions.
+3. Use Example, Clear, individual Copy, and Copy all with keyboard-only navigation.
+4. Check narrow screens, light and dark themes, offline navigation, and installed-PWA mode.
 
-## Release checks
+## Release testing
 
-- `git diff --check` passes.
-- Unit and browser/end-to-end tests pass.
-- Service-worker cache contains every shipped module dependency.
-- Accessibility and responsive reviews have no unresolved critical issues.
+Before release, pass automated checks, run supported-browser smoke tests, verify every shipped module is cacheable, and record known limitations in [CHANGELOG.md](CHANGELOG.md).

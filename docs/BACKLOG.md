@@ -1,21 +1,19 @@
 # Backlog
 
-## Next up
+## Highest priority
 
-1. Complete the IPv4 Calculator hardening work: broaden special-use range policy, improve field-level validation, and add browser-level tests.
-2. Document the IPv4 Calculator's inputs, output definitions, and `/31` and `/32` host-count behavior.
-3. Extract protocol-neutral foundations required by the IPv6 Calculator without coupling IPv6 semantics to IPv4 helpers.
+1. Complete IPv4 Calculator hardening: precise validation states, accessible error messaging, browser tests, and user-facing guidance.
+2. Restrict service-worker runtime caching to intended successful public responses.
+3. Define supported browser versions and add a Content Security Policy appropriate for a static PWA.
 
-## Product backlog
+## Network suite
 
-- CIDR and wildcard conversion tools
-- VLSM Designer and route summarization
-- Cisco ACL and VLAN tooling
-- Shared productivity capabilities: search, favorites, history, import/export, and keyboard shortcuts
+- IPv6 calculator foundations that do not couple IPv6 semantics to IPv4 helpers.
+- CIDR, wildcard, VLSM, and route-summarisation tools built from reusable pure functions.
 
-## Quality backlog
+## Cross-cutting work
 
-- Add a Content Security Policy.
-- Restrict service-worker runtime caching to deliberate, successful public responses.
-- Add DOM and end-to-end tests for calculator workflows.
-- Audit light-theme contrast and screen-reader announcements.
+- Search, favourites, recently used tools, keyboard shortcuts, import/export, and settings.
+- End-to-end tests, accessibility audit, responsive review, and release automation.
+
+Items are ordered by value and risk, not by implementation effort. Architectural changes require an ADR; see [adr/](adr/).
