@@ -10,7 +10,8 @@ let deferredInstallPrompt;
 async function render() {
   const view = activeRoute();
   navigation.innerHTML = renderNavigation(view);
-  await renderRoute(view, content);
+  const rendered = await renderRoute(view, content);
+  if (!rendered) return;
   content.focus({ preventScroll: true });
   updateConnectionStatus();
   setupInstallButton();
