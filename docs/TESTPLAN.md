@@ -1,43 +1,45 @@
 # Test Plan
 
-<<<<<<< HEAD
 ## Automated checks
 
-Run the complete dependency-free suite with:
+Run the dependency-free Node.js suite with:
 
 ```bash
 npm test
 git diff --check
 ```
 
-IPv4 tests cover parsing, prefixes, netmasks, subnet bounds, `/0`, `/31`, `/32`, special-use ranges, validation, and formatting. New pure helpers require equivalent coverage.
+The IPv4 unit tests cover parsing, prefixes, netmasks, subnet boundaries, `/0`, `/31`, `/32`, special-purpose ranges, validation, formatting, and exported-helper input guards. Router tests cover stale asynchronous imports.
 
-## Manual acceptance checks
+## Browser tests
 
-1. Calculate `192.168.1.42/24` and verify network `192.168.1.0` and broadcast `192.168.1.255`.
-2. Enter a contiguous netmask and verify prefix synchronisation; then enter invalid values and verify precise errors and disabled copy actions.
-3. Use Example, Clear, individual Copy, and Copy all with keyboard-only navigation.
-4. Check narrow screens, light and dark themes, offline navigation, and installed-PWA mode.
+Serve the repository root over HTTP:
 
-## Release testing
+```bash
+python3 -m http.server 8000
+```
 
-Before release, pass automated checks, run supported-browser smoke tests, verify every shipped module is cacheable, and record known limitations in [CHANGELOG.md](CHANGELOG.md).
-=======
-## Test levels
+Then open:
 
-### Unit tests
+```text
+http://localhost:8000/tests/browser/ipv4.html
+```
 
-Use Node's built-in test runner for pure validation, calculation, classification and formatting functions.
+The page runs the IPv4 module in a real browser DOM and reports each result. A successful run ends with `All browser tests passed.` and sets `data-test-status="passed"` on the document element.
 
-### Browser tests
+Current browser coverage includes:
 
-Cover routing, forms, accessibility state, clipboard behavior, theme behavior, responsive rendering and offline operation.
+- initial calculation rendering;
+- field-specific live validation and associated error text;
+- clearing errors after corrected input;
+- prefix-to-netmask and netmask-to-prefix synchronization;
+- native focusability of inputs and action buttons;
+- focus behavior after Example and Clear;
+- clipboard success and status announcement.
 
-### Manual release checks
+Run this suite in each supported browser before release. Clipboard fallback and offline/installability behavior remain separate P2 work items.
 
-Verify installability, offline startup, keyboard navigation and representative desktop/mobile browsers before a release.
-
-## IPv4 calculator
+## IPv4 calculator acceptance checks
 
 ### Valid inputs
 
@@ -54,20 +56,17 @@ Verify installability, offline startup, keyboard navigation and representative d
 
 - Missing or incomplete octets
 - Octets outside `0..255`
-- Leading-zero policy violations
 - Prefixes below `0` or above `32`
 - Non-contiguous subnet masks
 - Non-numeric values
-- Conflicting prefix and netmask values
 
 ### Calculation assertions
 
-- Network address
-- Broadcast address
+- Network and broadcast address
 - First and last host
 - Total and usable address counts
 - Netmask and wildcard mask
-- Integer, hexadecimal and binary formats
+- Integer, hexadecimal, and binary formats
 - Reverse DNS host name
 
 ### Classification assertions
@@ -79,21 +78,9 @@ Verify installability, offline startup, keyboard navigation and representative d
 - Benchmarking `198.18.0.0/15`
 - Documentation ranges
 - Multicast `224.0.0.0/4`
-- Reserved `240.0.0.0/4`
-- Unspecified and current-network `0.0.0.0/8`
+- Future-reserved `240.0.0.0/4`
+- Current-network `0.0.0.0/8`
 - Limited broadcast `255.255.255.255`
-
-### Accessibility and interaction
-
-- Field-specific `aria-invalid`
-- Errors associated with the relevant field
-- No repetitive success announcements while typing
-- Keyboard access to all actions
-- Visible focus
-- Copy individual result
-- Copy all results
-- Clipboard fallback
-- Clear and example actions
 
 ## Router
 
@@ -107,11 +94,10 @@ Verify installability, offline startup, keyboard navigation and representative d
 - Application shell is cached.
 - Approved static assets work offline.
 - Failed and non-successful responses are not cached.
-- Sensitive or unknown runtime GET responses are not cached indiscriminately.
+- Unknown runtime GET responses are not cached indiscriminately.
 - Cache upgrades remove obsolete versions.
 - Manifest and service-worker registration remain valid.
 
 ## Release gate
 
-All automated tests must pass. P1 backlog items for the target release must be complete, and manual release checks must be recorded.
->>>>>>> dde56c2a9eb22362e4d327c2dace76432dcad430
+All automated tests must pass. Browser tests must pass in supported browsers. P1 backlog items for the target release must be complete, and manual release checks must be recorded.
