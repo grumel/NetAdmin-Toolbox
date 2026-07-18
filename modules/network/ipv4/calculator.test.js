@@ -36,7 +36,18 @@ test("validators produce structured live-validation results", () => {
   assert.equal(validatePrefix("/40").valid, false);
   assert.equal(validateNetmask("255.255.255.224").value, 27);
   assert.equal(validateNetmask("255.0.255.0").valid, false);
-  assert.deepEqual(validateCalculationInput("192.0.2.1", "/24").value, { octets: [192, 0, 2, 1], prefix: 24 });
+
+  const validInput = validateCalculationInput("192.0.2.1", "/24");
+  assert.deepEqual(validInput.value, { octets: [192, 0, 2, 1], prefix: 24 });
+  assert.deepEqual(validInput.errors, {});
+  assert.equal(validInput.fields.address.valid, true);
+  assert.equal(validInput.fields.prefix.valid, true);
+
+  const invalidInput = validateCalculationInput("192.0.2", "/40");
+  assert.equal(invalidInput.valid, false);
+  assert.deepEqual(Object.keys(invalidInput.errors), ["address", "prefix"]);
+  assert.match(invalidInput.errors.address, /valid IPv4 address/);
+  assert.match(invalidInput.errors.prefix, /\/0 to \/32/);
 });
 
 test("calculator derives the complete /24 subnet", () => {
