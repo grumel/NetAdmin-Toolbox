@@ -1,37 +1,21 @@
-<<<<<<< HEAD
-# ADR 0003: Keep runtime dependencies at zero
+# ADR 0003: No Required External Runtime Dependencies
 
 - **Status:** Accepted
 - **Date:** 2026-07-18
 
 ## Context
 
-The project values auditability, quick startup, offline reliability, and a low maintenance burden.
+External frameworks and hosted assets can increase supply-chain risk, application size, offline complexity, and maintenance burden. The project values auditability, quick startup, and reliable offline operation.
 
 ## Decision
 
-Use platform APIs and project modules instead of external runtime libraries.
+Use browser platform APIs and project-owned code for core functionality. Do not require external JavaScript frameworks, CDNs, remote fonts, or hosted services at runtime.
 
-## Consequences
-
-Contributors must justify any exception with an ADR. Small, well-tested helpers are preferred over framework adoption.
-=======
-# ADR 0003: No Required External Runtime Dependencies
-
-- Status: Accepted
-- Date: 2026-07-18
-
-## Context
-
-External frameworks and hosted assets can increase supply-chain risk, application size and offline complexity.
-
-## Decision
-
-Use browser platform APIs and project-owned code for core functionality. Do not require external JavaScript frameworks, CDNs, remote fonts or hosted services at runtime.
+Development-only tools must also be justified by clear value. Small, dependency-free test harnesses are preferred when browser platform APIs are sufficient.
 
 ## Consequences
 
 - The application remains lightweight and auditable.
 - Contributors may need to implement small focused utilities directly.
-- Any proposed dependency requires documented justification, security review and a new architecture decision.
->>>>>>> dde56c2a9eb22362e4d327c2dace76432dcad430
+- Any proposed runtime dependency requires documented justification, security review, and a new architecture decision.
+- Browser behavior may be tested with project-owned HTML and JavaScript harnesses when a full external test framework is unnecessary.
