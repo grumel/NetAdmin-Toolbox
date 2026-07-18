@@ -1,0 +1,1 @@
+export function render() { return `<section class="module-empty"><header class="page-header"><div><p class="eyebrow">Tool module</p><h1>Windows</h1><p class="page-summary">Windows tools will appear here.</p></div></header></section>`; }

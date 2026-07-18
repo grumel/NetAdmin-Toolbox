@@ -2,7 +2,7 @@
   "name": "NetAdmin Toolbox",
   "short_name": "NetAdmin",
   "description": "A modern, installable workspace for network administration tools.",
-  "id": "/",
+  "id": "./",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

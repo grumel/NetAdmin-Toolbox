@@ -12,28 +12,28 @@
     <title>NetAdmin Toolbox</title>
   </head>
   <body>
+    <a class="skip-link" href="#app-content">Skip to main content</a>
     <div class="app-layout">
       <aside class="sidebar" aria-label="Primary navigation">
-        <a class="brand" href="#dashboard" aria-label="NetAdmin Toolbox dashboard">
+        <a class="brand" href="#/dashboard" aria-label="NetAdmin Toolbox dashboard">
           <img src="assets/icons/icon.svg" alt="" width="36" height="36" />
           <span>NetAdmin<span class="brand-muted"> Toolbox</span></span>
         </a>
-
-        <nav class="navigation" id="primary-navigation">
-          <!-- Navigation items are rendered by the application module. -->
-        </nav>
-
-        <div class="sidebar-footer">
-          <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch color theme">
-            <span aria-hidden="true">◐</span><span>Appearance</span>
-          </button>
-          <p class="connection-status" id="connection-status" role="status">Checking connection…</p>
-        </div>
+        <nav class="navigation" id="primary-navigation" aria-label="Toolbox sections"></nav>
       </aside>
 
-      <main class="main-content" id="app-content" tabindex="-1">
-        <!-- Views are rendered by the application module. -->
-      </main>
+      <section class="workspace">
+        <header class="app-header">
+          <div><p class="eyebrow">Administration workspace</p><p class="project-title">NetAdmin Toolbox</p></div>
+          <div class="header-actions">
+            <p class="connection-status" id="connection-status" role="status">Checking connection…</p>
+            <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="true">
+              <span aria-hidden="true">◐</span><span id="theme-toggle-label">Use light mode</span>
+            </button>
+          </div>
+        </header>
+        <main class="main-content" id="app-content" tabindex="-1" aria-live="polite"></main>
+      </section>
     </div>
     <script type="module" src="assets/js/app.js"></script>
   </body>
