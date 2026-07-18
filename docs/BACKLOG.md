@@ -18,7 +18,7 @@ Work is ordered by priority. Complete P1 items before starting the next major fe
 
 ## P2 — Platform stability
 
-- [ ] Guard asynchronous route rendering against stale imports
+- [x] Guard asynchronous route rendering against stale imports
 - [ ] Add browser tests for live validation and keyboard operation
 - [ ] Test clipboard API and fallback behavior
 - [ ] Add a restrictive Content Security Policy compatible with the application
