@@ -40,7 +40,7 @@ test("every prefix from /0 through /32 produces the correct mask and size", () =
     const result = calculateSubnet([203, 0, 113, 129], prefix);
     assert.notEqual(result, null, `calculation /${prefix}`);
     assert.equal(result.totalAddresses, 2 ** (32 - prefix), `address count /${prefix}`);
-    assert.equal(result.network & result.mask, result.network, `network alignment /${prefix}`);
+    assert.equal((result.network & result.mask) >>> 0, result.network, `network alignment /${prefix}`);
     assert.equal((result.broadcast | result.mask) >>> 0, UINT32_MAX, `broadcast boundary /${prefix}`);
   }
 });
