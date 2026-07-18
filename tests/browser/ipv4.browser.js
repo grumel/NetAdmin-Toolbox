@@ -21,6 +21,12 @@ function inputValue(element, value) {
   element.dispatchEvent(new InputEvent("input", { bubbles: true, inputType: "insertText", data: value }));
 }
 
+async function settleClick(button) {
+  button.click();
+  await Promise.resolve();
+  await Promise.resolve();
+}
+
 async function run(name, test) {
   try {
     await test();
@@ -104,11 +110,46 @@ await run("copy-all reports clipboard success", async () => {
     value: { writeText: async (value) => { copied = value; } }
   });
   copyAll.focus();
-  copyAll.click();
-  await Promise.resolve();
-  await Promise.resolve();
+  await settleClick(copyAll);
   assert(copied.includes("Network: 192.0.2.0"), "formatted results were not copied");
   assert(message.textContent === "Copied to clipboard.", "copy success was not announced");
+});
+
+await run("clipboard rejection uses the execCommand fallback", async () => {
+  let fallbackCalled = false;
+  let fallbackText = "";
+  Object.defineProperty(navigator, "clipboard", {
+    configurable: true,
+    value: { writeText: async () => { throw new DOMException("Denied", "NotAllowedError"); } }
+  });
+  const originalExecCommand = document.execCommand;
+  document.execCommand = (command) => {
+    fallbackCalled = command === "copy";
+    fallbackText = document.querySelector("textarea")?.value ?? "";
+    return true;
+  };
+  try {
+    await settleClick(copyAll);
+    assert(fallbackCalled, "execCommand copy fallback was not called");
+    assert(fallbackText.includes("Network: 192.0.2.0"), "fallback textarea did not contain formatted results");
+    assert(message.textContent === "Copied to clipboard.", "fallback success was not announced");
+    assert(document.querySelector("textarea") === null, "temporary fallback textarea was not removed");
+  } finally {
+    document.execCommand = originalExecCommand;
+  }
+});
+
+await run("missing clipboard API and failed fallback report an error", async () => {
+  Object.defineProperty(navigator, "clipboard", { configurable: true, value: undefined });
+  const originalExecCommand = document.execCommand;
+  document.execCommand = () => false;
+  try {
+    await settleClick(copyAll);
+    assert(message.textContent === "Copy failed; select the value and copy it manually.", "copy failure guidance was not shown");
+    assert(document.querySelector("textarea") === null, "temporary textarea remained after fallback failure");
+  } finally {
+    document.execCommand = originalExecCommand;
+  }
 });
 
 const summary = document.createElement("p");
