@@ -23,8 +23,25 @@ export function renderNavigation(active) {
   return navigationItems.map(([id, label, icon]) => `<a class="nav-link" href="#/${id}" ${id === active ? 'aria-current="page"' : ""}><span class="nav-icon" aria-hidden="true">${icon}</span><span>${label}</span></a>`).join("");
 }
 
-export async function renderRoute(route, container) {
-  const page = await routes[route]();
-  container.innerHTML = page.render();
-  page.initialize?.(container);
+/**
+ * Creates a route renderer that commits only the newest requested view.
+ * This prevents a slow dynamic import from replacing a newer navigation.
+ */
+export function createRouteRenderer(routeLoaders = routes) {
+  let latestRequest = 0;
+
+  return async function renderRequestedRoute(route, container) {
+    const request = ++latestRequest;
+    const loader = routeLoaders[route];
+    if (!loader) return false;
+
+    const page = await loader();
+    if (request !== latestRequest) return false;
+
+    container.innerHTML = page.render();
+    page.initialize?.(container);
+    return true;
+  };
 }
+
+export const renderRoute = createRouteRenderer();
