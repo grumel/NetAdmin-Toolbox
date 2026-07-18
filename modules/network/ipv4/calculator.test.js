@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { calculateSubnet } from "./calculator.js";
 import { formatBinary, formatBoolean, formatCalculation, formatCopyAll, formatHex, formatReverseDns } from "./formatter.js";
-import { historicalAddressClass, integerToIPv4, IPV4_SPECIAL_USE_RANGES, ipv4ToInteger, isInAnySubnet, isInSubnet, maskFromPrefix, netmaskFromPrefix, parseIPv4, parsePrefix, prefixFromNetmask } from "./helpers.js";
+import { historicalAddressClass, integerToIPv4, IPV4_SPECIAL_USE_RANGES, ipv4ToInteger, isInAnySubnet, isInSubnet, maskFromPrefix, netmaskFromPrefix, parseIPv4, parsePrefix, prefixFromNetmask, UINT32_MAX } from "./helpers.js";
 import { validateCalculationInput, validateIPv4, validateNetmask, validatePrefix } from "./validation.js";
 
 test("IPv4 helper conversions round-trip correctly", () => {
@@ -15,6 +15,36 @@ test("IPv4 helper conversions round-trip correctly", () => {
   assert.equal(parsePrefix("33"), null);
 });
 
+test("exported helpers reject invalid input without throwing", () => {
+  assert.equal(ipv4ToInteger([192, 168, 1]), null);
+  assert.equal(ipv4ToInteger([192, 168, 1, 999]), null);
+  assert.equal(integerToIPv4(-1), null);
+  assert.equal(integerToIPv4(UINT32_MAX + 1), null);
+  assert.equal(prefixFromNetmask([255, 255, 999, 0]), null);
+  assert.equal(isInSubnet(-1, 0, 0), false);
+  assert.equal(isInSubnet(0, UINT32_MAX + 1, 0), false);
+  assert.equal(isInAnySubnet(0, null), false);
+  assert.equal(isInAnySubnet(0, [[0, 99]]), false);
+  assert.equal(historicalAddressClass(-1), null);
+  assert.equal(historicalAddressClass(256), null);
+});
+
+test("every prefix from /0 through /32 produces the correct mask and size", () => {
+  for (let prefix = 0; prefix <= 32; prefix += 1) {
+    const mask = maskFromPrefix(prefix);
+    const netmask = netmaskFromPrefix(prefix);
+    assert.notEqual(mask, null, `mask /${prefix}`);
+    assert.notEqual(netmask, null, `netmask /${prefix}`);
+    assert.equal(prefixFromNetmask(netmask), prefix, `round-trip /${prefix}`);
+
+    const result = calculateSubnet([203, 0, 113, 129], prefix);
+    assert.notEqual(result, null, `calculation /${prefix}`);
+    assert.equal(result.totalAddresses, 2 ** (32 - prefix), `address count /${prefix}`);
+    assert.equal(result.network & result.mask, result.network, `network alignment /${prefix}`);
+    assert.equal((result.broadcast | result.mask) >>> 0, UINT32_MAX, `broadcast boundary /${prefix}`);
+  }
+});
+
 test("prefix and netmask helpers accept only valid contiguous masks", () => {
   assert.equal(maskFromPrefix(24), 0xffffff00);
   assert.equal(maskFromPrefix(33), null);
@@ -24,7 +54,7 @@ test("prefix and netmask helpers accept only valid contiguous masks", () => {
   assert.equal(prefixFromNetmask("255.0.255.0"), null);
   assert.equal(isInSubnet(0xc0a8012a, 0xc0a80100, 24), true);
   assert.equal(isInSubnet(0xc0a8022a, 0xc0a80100, 24), false);
-  assert.equal(isInAnySubnet(0x64400000, IPV4_SPECIAL_USE_RANGES.reserved), true);
+  assert.equal(isInAnySubnet(0x64400000, IPV4_SPECIAL_USE_RANGES.sharedAddressSpace), true);
   assert.equal(historicalAddressClass(10), "A");
   assert.equal(historicalAddressClass(224), "D (multicast)");
 });
@@ -73,20 +103,15 @@ test("calculator handles RFC 3021 and single-host prefixes", () => {
 });
 
 test("calculator classifies special-use and documentation addresses", () => {
-  const linkLocal = calculateSubnet([169, 254, 1, 1], 16);
-  const multicast = calculateSubnet([239, 1, 2, 3], 8);
-  const documentation = calculateSubnet([198, 51, 100, 7], 24);
-  const reserved = calculateSubnet([240, 0, 0, 1], 4);
-  const shared = calculateSubnet([100, 64, 0, 1], 10);
-  const benchmark = calculateSubnet([198, 18, 0, 1], 15);
-  const ordinaryPublic = calculateSubnet([100, 128, 0, 1], 16);
-  assert.equal(linkLocal.rfc3927, true);
-  assert.equal(multicast.multicast, true);
-  assert.equal(documentation.documentation, true);
-  assert.equal(reserved.reserved, true);
-  assert.equal(shared.reserved, true);
-  assert.equal(benchmark.reserved, true);
-  assert.equal(ordinaryPublic.reserved, false);
+  assert.equal(calculateSubnet([0, 1, 2, 3], 8).currentNetwork, true);
+  assert.equal(calculateSubnet([100, 64, 0, 1], 10).sharedAddressSpace, true);
+  assert.equal(calculateSubnet([198, 18, 0, 1], 15).benchmarking, true);
+  assert.equal(calculateSubnet([240, 0, 0, 1], 4).futureReserved, true);
+  assert.equal(calculateSubnet([255, 255, 255, 255], 32).limitedBroadcast, true);
+  assert.equal(calculateSubnet([169, 254, 1, 1], 16).rfc3927, true);
+  assert.equal(calculateSubnet([239, 1, 2, 3], 8).multicast, true);
+  assert.equal(calculateSubnet([198, 51, 100, 7], 24).documentation, true);
+  assert.equal(calculateSubnet([100, 128, 0, 1], 16).reserved, false);
   assert.equal(calculateSubnet([1, 2, 3], 24), null);
 });
 
@@ -100,4 +125,5 @@ test("formatters keep presentation separate from calculations", () => {
   assert.equal(formatted.network, "192.0.2.0");
   assert.equal(formatBoolean(false), "No");
   assert.match(formatCopyAll(formatted), /Network: 192\.0\.2\.0/);
+  assert.match(formatCopyAll(formatted), /Special-purpose \/ non-public: No/);
 });
