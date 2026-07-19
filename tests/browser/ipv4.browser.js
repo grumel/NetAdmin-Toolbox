@@ -78,6 +78,14 @@ await run("prefix input synchronizes the netmask", () => {
   assert(fixture.querySelector('[data-result="totalAddresses"]').textContent === "4", "prefix result was not updated");
 });
 
+await run("invalid prefix state does not invalidate the other fields", () => {
+  inputValue(prefix, "/40");
+  assert(prefix.getAttribute("aria-invalid") === "true", "prefix was not marked invalid");
+  assert(address.getAttribute("aria-invalid") === "false", "address should remain valid");
+  assert(netmask.getAttribute("aria-invalid") === "false", "netmask should remain valid");
+  inputValue(prefix, "/24");
+});
+
 await run("netmask input synchronizes the prefix", () => {
   inputValue(netmask, "255.255.255.128");
   assert(prefix.value === "/25", "prefix did not follow the netmask");
