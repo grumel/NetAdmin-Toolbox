@@ -1,3 +1,4 @@
+import { isValidIPv4 } from "../shared/validation.js";
 import { parseIPv4, parsePrefix, prefixFromNetmask } from "./helpers.js";
 
 const valid = (value) => ({ valid: true, value, message: "" });
@@ -5,8 +6,9 @@ const invalid = (message) => ({ valid: false, message, value: null });
 
 /** Pure validators return structured results so UIs can present errors consistently. */
 export function validateIPv4(value) {
-  const octets = parseIPv4(value);
-  return octets ? valid(octets) : invalid("Enter a valid IPv4 address, for example 192.168.1.42.");
+  return isValidIPv4(value)
+    ? valid(parseIPv4(value))
+    : invalid("Enter a valid IPv4 address, for example 192.168.1.42.");
 }
 
 export function validatePrefix(value) {
