@@ -51,8 +51,8 @@ This roadmap reflects the current browser-based, offline-first architecture of N
 - [x] DNS record reference
 - [x] DNS query helper using browser-based DNS over HTTPS
 - [x] IP and hostname input validation shared across tools
-- [ ] Export selected calculation results as CSV
-- [ ] Improve printable result layouts
+- [x] Export selected calculation results as CSV
+- [x] Improve printable result layouts
 - [ ] Expand automated tests for tool catalog and localization
 
 ## Planned
