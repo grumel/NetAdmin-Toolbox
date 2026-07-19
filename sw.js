@@ -1,4 +1,4 @@
-const CACHE_NAME = "netadmin-toolbox-v12";
+const CACHE_NAME = "netadmin-toolbox-v13";
 const APP_SHELL = [
   "./", "index.html", "manifest.json", "assets/css/styles.css", "assets/js/app.js",
   "assets/js/router.js", "assets/js/theme.js", "assets/js/storage.js", "assets/js/tool-catalog.js",
@@ -12,7 +12,7 @@ const APP_SHELL = [
   "modules/network/ipv4/style.css", "modules/network/ipv6/index.js",
   "modules/network/ipv6/calculator.js", "modules/network/subnet-tools/index.js",
   "modules/network/subnet-tools/calculator.js", "modules/network/mac-converter/index.js",
-  "modules/network/port-search/index.js"
+  "modules/network/port-search/index.js", "modules/network/dns-reference/index.js"
 ];
 const CACHEABLE_DESTINATIONS = new Set(["script", "style", "image", "font", "manifest"]);
 const OFFLINE_DOCUMENT = "index.html";
