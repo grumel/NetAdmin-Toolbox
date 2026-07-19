@@ -16,28 +16,28 @@ This roadmap records product milestones. Detailed work items belong in [BACKLOG.
 - [x] IPv4 calculator implementation
 - [x] Separation of UI, validation, calculation and formatting
 - [x] Initial unit tests
-- [ ] IPv4 hardening
-- [ ] Complete special-purpose range classification
-- [ ] Accessibility refinement
-- [ ] Browser-level tests
-- [ ] Service worker cache hardening
+- [x] IPv4 hardening
+- [x] Complete special-purpose range classification
+- [x] Accessibility refinement
+- [x] Browser-level tests
+- [x] Service worker cache hardening
 
 ## 0.3.x — IPv6 Toolkit
 
-- [ ] IPv6 parser and validator
-- [ ] Expansion and compression
-- [ ] Prefix calculations
-- [ ] Address classification
+- [x] IPv6 parser and validator
+- [x] Expansion and compression
+- [x] Prefix calculations
+- [x] Address classification
 - [ ] Reverse DNS generation
-- [ ] Unit and browser tests
+- [x] Unit tests
 
 ## 0.4.x — Address Planning
 
-- [ ] CIDR and netmask converter
-- [ ] Wildcard converter
-- [ ] VLSM designer
-- [ ] Subnet planner
-- [ ] Export to text and JSON
+- [x] CIDR and netmask converter
+- [x] Wildcard converter
+- [x] VLSM designer
+- [x] Subnet planner
+- [x] Export to CSV
 
 ## 0.6.0 — Shared Network Foundations
 
@@ -46,7 +46,7 @@ This roadmap records product milestones. Detailed work items belong in [BACKLOG.
 
 ## 0.5.x — Routing and Cisco
 
-- [ ] Route summarization
+- [x] Route summarization
 - [ ] ACL generator
 - [ ] ACL optimizer
 - [ ] VLAN calculator
@@ -78,11 +78,11 @@ This roadmap records product milestones. Detailed work items belong in [BACKLOG.
 
 ## 0.9.x — Product Experience
 
-- [ ] Global search
-- [ ] Favorites and recent tools
-- [ ] Keyboard shortcuts and command palette
-- [ ] Import and export
-- [ ] Settings and localization foundation
+- [x] Global search
+- [x] Favorites and recent tools
+- [x] Keyboard shortcuts and command palette
+- [x] Import and export
+- [x] Settings and localization foundation
 - [ ] Full accessibility and performance audit
 
 ## 1.0.0 — Stable

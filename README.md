@@ -7,11 +7,9 @@
 ![Offline Ready](https://img.shields.io/badge/offline-ready-2ea44f)
 ![Browser Based](https://img.shields.io/badge/platform-browser-lightgrey)
 
+Current version: **0.6.0**
+
 NetAdmin Toolbox brings practical network and administration utilities into one privacy-friendly Progressive Web App. It runs entirely in the browser, requires no server component, supports German and English, and remains available offline after the application shell has been cached.
-
-## Screenshot
-
-![Application Screenshot](docs/images/netadmin-toolbox.png)
 
 ## Features
 
@@ -47,18 +45,47 @@ NetAdmin Toolbox brings practical network and administration utilities into one 
 
 ## Installation
 
-NetAdmin Toolbox is a static web application. No production server or dependency installation is required.
+### Use the published application
+
+Open the published application URL in a current browser. No Node.js installation, server component, or local setup is required for normal use. The application can be installed as a PWA from Microsoft Edge or Google Chrome using the install icon in the address bar or the browser menu. Once installed, it can be launched from the Windows Start menu.
+
+### Local development
+
+Node.js 20 or newer is required only for development and tests. The application itself is static and has no runtime dependency installation step.
+
+#### Windows
 
     git clone https://github.com/grumel/NetAdmin-Toolbox.git
     cd NetAdmin-Toolbox
+    py -m http.server 8001
 
-Serve the repository through a local HTTP server:
+If py is not available, use:
 
-    python3 -m http.server 8000
+    python -m http.server 8001
 
-Open [http://localhost:8000](http://localhost:8000) in a modern browser. A local HTTP server is recommended because service workers are not enabled for ordinary file pages.
+Then open [http://localhost:8001](http://localhost:8001).
 
-Run the automated tests with Node.js 20 or newer:
+#### Linux
+
+    git clone https://github.com/grumel/NetAdmin-Toolbox.git
+    cd NetAdmin-Toolbox
+    python3 -m http.server 8001
+
+Then open [http://localhost:8001](http://localhost:8001).
+
+#### macOS
+
+    git clone https://github.com/grumel/NetAdmin-Toolbox.git
+    cd NetAdmin-Toolbox
+    python3 -m http.server 8001
+
+Then open [http://localhost:8001](http://localhost:8001).
+
+#### Visual Studio Code
+
+The Live Server extension is an optional development alternative. It must serve the project over HTTP; do not open index.html directly with file://, because native ES modules and service-worker registration require an HTTP(S) origin.
+
+Run the automated tests from the repository root:
 
     npm test
 
@@ -110,11 +137,15 @@ Tool modules keep UI, validation, calculations, formatting, and reusable helpers
 
 Planned work is tracked in [docs/ROADMAP.md](docs/ROADMAP.md) and [docs/BACKLOG.md](docs/BACKLOG.md). The next planned milestones are:
 
-- IPv4 hardening, including expanded RFC range coverage, accessibility refinement, browser tests, and cache-policy review
+- IPv6 reverse-DNS generation and broader IPv6 browser coverage
 - Additional Cisco administration tools such as ACL, VLAN, interface, and routing helpers
 - Windows and Linux administration utilities
 - Security and developer tools
 - Accessibility, performance, and supported-browser verification for the 1.0 release
+
+## Contributing and security
+
+See [CONTRIBUTING.md](docs/CONTRIBUTING.md), [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md), and [SECURITY.md](SECURITY.md) for project participation and reporting guidance.
 
 ## License
 
