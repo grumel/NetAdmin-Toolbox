@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import fs from "node:fs";
 import test from "node:test";
 import { calculateSubnet } from "./calculator.js";
 import { formatBinary, formatBoolean, formatCalculation, formatCopyAll, formatHex, formatReverseDns } from "./formatter.js";
@@ -78,6 +79,14 @@ test("validators produce structured live-validation results", () => {
   assert.deepEqual(Object.keys(invalidInput.errors), ["address", "prefix"]);
   assert.equal(invalidInput.errors.address, "ipv4InvalidAddress");
   assert.equal(invalidInput.errors.prefix, "ipv4InvalidPrefix");
+});
+
+test("IPv4 validation errors use high-contrast light and dark theme colors", () => {
+  const stylesheet = fs.readFileSync(new URL("./style.css", import.meta.url), "utf8");
+  assert.match(stylesheet, /\.ipv4-field-error\s*\{[^}]*color:\s*#991b1b/);
+  assert.match(stylesheet, /\.ipv4-message\.is-error\s*\{[^}]*color:\s*#991b1b/);
+  assert.match(stylesheet, /\[data-theme="dark"\]\s+\.ipv4-field-error\s*\{[^}]*color:\s*#fca5a5/);
+  assert.match(stylesheet, /\[data-theme="dark"\]\s+\.ipv4-message\.is-error\s*\{[^}]*color:\s*#fca5a5/);
 });
 
 test("calculator derives the complete /24 subnet", () => {

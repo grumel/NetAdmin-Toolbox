@@ -8,7 +8,7 @@ Work is ordered by priority. Complete P1 items before starting the next major fe
 - [ ] Track validation state independently for IP address, prefix and netmask
 - [ ] Associate field-specific errors with the relevant controls
 - [ ] Stop announcing successful recalculation on every keystroke
-- [ ] Improve light-theme error contrast
+- [x] Improve light-theme error contrast
 - [ ] Detect unspecified and current-network ranges in `0.0.0.0/8`
 - [ ] Detect carrier-grade NAT `100.64.0.0/10`
 - [ ] Detect benchmarking range `198.18.0.0/15`
