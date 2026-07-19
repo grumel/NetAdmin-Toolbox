@@ -64,6 +64,14 @@ await run("invalid address updates only the address field", () => {
   assert(copyAll.disabled === true, "copy-all should be disabled for invalid input");
 });
 
+await run("prefix validation reports its error on the prefix field", () => {
+  inputValue(prefix, "/40");
+  assert(prefix.getAttribute("aria-invalid") === "true", "prefix was not marked invalid");
+  assert(document.querySelector("#ipv4-prefix-error")?.textContent.includes("valid prefix"), "prefix error was not associated with the field");
+  assert(document.querySelector("#ipv4-address-error")?.textContent === "", "address error should remain empty");
+  inputValue(prefix, "/24");
+});
+
 await run("correcting the address clears the live error", () => {
   inputValue(address, "10.0.0.1");
   assert(address.getAttribute("aria-invalid") === "false", "address error did not clear");
