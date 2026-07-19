@@ -32,7 +32,7 @@ export function initialize(container) {
   const input = container.querySelector("#mac-input");
   const results = container.querySelector("#mac-results");
   const error = container.querySelector("#mac-error");
-  const run = () => {
+  const run = ({ showError = true } = {}) => {
     try {
       const data = convertMac(input.value);
       error.textContent = "";
@@ -40,11 +40,19 @@ export function initialize(container) {
       results.innerHTML = resultRow(t("macColon"), data.colon) + resultRow(t("macHyphen"), data.hyphen) + resultRow(t("macCisco"), data.cisco) + resultRow(t("macPlain"), data.plain) + `<div class="result-row"><span>${t("macType")}</span><strong>${type}</strong></div><div class="result-row"><span>${t("macAdministration")}</span><strong>${data.local ? t("macLocal") : t("macGlobal")}</strong></div>`;
     } catch {
       results.innerHTML = "";
-      error.textContent = t("macInvalid");
+      error.textContent = showError ? t("macInvalid") : "";
     }
   };
   container.querySelector("#mac-convert").addEventListener("click", run);
   input.addEventListener("keydown", (event) => { if (event.key === "Enter") run(); });
+  input.addEventListener("input", () => {
+    if (!input.value.trim()) {
+      results.innerHTML = "";
+      error.textContent = "";
+      return;
+    }
+    run({ showError: false });
+  });
   container.addEventListener("click", async (event) => {
     const button = event.target.closest("[data-copy]");
     if (button) await navigator.clipboard?.writeText(button.dataset.copy);
