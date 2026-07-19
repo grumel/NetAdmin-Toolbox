@@ -47,7 +47,7 @@ This roadmap records product milestones. Detailed work items belong in [BACKLOG.
 ## 0.5.x — Routing and Cisco
 
 - [x] Route summarization
-- [ ] ACL generator
+- [x] ACL generator
 - [ ] ACL optimizer
 - [ ] VLAN calculator
 - [ ] Interface converter

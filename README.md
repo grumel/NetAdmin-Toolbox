@@ -138,7 +138,7 @@ Tool modules keep UI, validation, calculations, formatting, and reusable helpers
 Planned work is tracked in [docs/ROADMAP.md](docs/ROADMAP.md) and [docs/BACKLOG.md](docs/BACKLOG.md). The next planned milestones are:
 
 - Broader IPv6 browser coverage
-- Additional Cisco administration tools such as ACL, VLAN, interface, and routing helpers
+- Additional Cisco administration tools such as VLAN, interface, and routing helpers
 - Windows and Linux administration utilities
 - Security and developer tools
 - Accessibility, performance, and supported-browser verification for the 1.0 release
