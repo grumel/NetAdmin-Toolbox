@@ -8,6 +8,7 @@ The format is based on Keep a Changelog and the project follows Semantic Version
 
 ### Added
 
+- Cisco interface name converter.
 - Cisco ACL optimizer for duplicate and shadowed rules.
 - Cisco VLAN calculator and configuration generator.
 - Cisco extended IPv4 ACL generator.
