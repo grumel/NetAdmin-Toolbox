@@ -5,77 +5,21 @@ const SUPPORTED = new Set(["en", "de"]);
 
 const messages = {
   en: {
-    overview: "Overview",
-    dashboard: "Dashboard",
-    dashboardSummary: "Search with Ctrl+K, pin favorites, or reopen a recently used tool.",
-    installApp: "Install app",
-    favorites: "Favorites",
-    recent: "Recently used",
-    allTools: "All tools",
-    settings: "Settings",
-    exportSettings: "Export settings",
-    importSettings: "Import settings",
-    language: "Language",
-    english: "English",
-    german: "German",
-    online: "Online",
-    offline: "Offline mode",
-    useLight: "Use light mode",
-    useDark: "Use dark mode",
-    addFavorite: "Add {name} to favorites",
-    removeFavorite: "Remove {name} from favorites",
-    importSuccess: "Settings imported. Reloading the application.",
-    importError: "The selected file is not a valid NetAdmin Toolbox settings export."
+    overview:"Overview", dashboard:"Dashboard", dashboardSummary:"Search with Ctrl+K, pin favorites, or reopen a recently used tool.", installApp:"Install app", favorites:"Favorites", recent:"Recently used", allTools:"All tools", settings:"Settings", exportSettings:"Export", importSettings:"Import", language:"Language", english:"English", german:"German", online:"Online", offline:"Offline mode", useLight:"Use light mode", useDark:"Use dark mode", addFavorite:"Add {name} to favorites", removeFavorite:"Remove {name} from favorites", importSuccess:"Settings imported. Reloading the application.", importError:"The selected file is not a valid NetAdmin Toolbox settings export.", network:"Network", copy:"Copy", convert:"Convert",
+    tool_ipv4_name:"IPv4 Calculator", tool_ipv4_description:"Calculate subnet boundaries, hosts, masks, and address metadata.", tool_ipv6_name:"IPv6 Calculator", tool_ipv6_description:"Expand, compress, classify, and calculate IPv6 networks.", tool_subnet_planner_name:"Subnet Planner", tool_subnet_planner_description:"Plan CIDR, wildcard, VLSM, and route summaries.", tool_mac_converter_name:"MAC Address Converter", tool_mac_converter_description:"Convert MAC formats and identify address properties.", tool_port_search_name:"Port Search", tool_port_search_description:"Search standard ports by number or service name.",
+    macTitle:"MAC Address Converter", macSummary:"Convert common MAC address formats and inspect the address type.", macInput:"MAC address", macColon:"Colon format", macHyphen:"Hyphen format", macCisco:"Cisco format", macPlain:"Plain format", macType:"Address type", macAdministration:"Administration", macBroadcast:"Broadcast", macMulticast:"Multicast", macUnicast:"Unicast", macLocal:"Locally administered", macGlobal:"Globally administered", macInvalid:"Enter a valid 48-bit MAC address.",
+    portTitle:"Port Search", portSummary:"Find common TCP and UDP services by port number, protocol, or name.", portQuery:"Port number or service", portRanges:"Ranges: well-known 0–1023, registered 1024–49151, dynamic 49152–65535.", port:"Port", protocol:"Protocol", service:"Service", range:"Range", description:"Description", noPorts:"No matching standard ports found.", port_wellKnown:"Well-known", port_registered:"Registered", port_dynamic:"Dynamic"
   },
   de: {
-    overview: "Übersicht",
-    dashboard: "Dashboard",
-    dashboardSummary: "Mit Strg+K suchen, Favoriten anheften oder zuletzt verwendete Werkzeuge erneut öffnen.",
-    installApp: "App installieren",
-    favorites: "Favoriten",
-    recent: "Zuletzt verwendet",
-    allTools: "Alle Werkzeuge",
-    settings: "Einstellungen",
-    exportSettings: "Einstellungen exportieren",
-    importSettings: "Einstellungen importieren",
-    language: "Sprache",
-    english: "Englisch",
-    german: "Deutsch",
-    online: "Online",
-    offline: "Offline-Modus",
-    useLight: "Hellen Modus verwenden",
-    useDark: "Dunklen Modus verwenden",
-    addFavorite: "{name} zu Favoriten hinzufügen",
-    removeFavorite: "{name} aus Favoriten entfernen",
-    importSuccess: "Einstellungen importiert. Die Anwendung wird neu geladen.",
-    importError: "Die ausgewählte Datei ist kein gültiger NetAdmin-Toolbox-Export."
+    overview:"Übersicht", dashboard:"Dashboard", dashboardSummary:"Mit Strg+K suchen, Favoriten anheften oder zuletzt verwendete Werkzeuge erneut öffnen.", installApp:"App installieren", favorites:"Favoriten", recent:"Zuletzt verwendet", allTools:"Alle Werkzeuge", settings:"Einstellungen", exportSettings:"Export", importSettings:"Import", language:"Sprache", english:"Englisch", german:"Deutsch", online:"Online", offline:"Offline-Modus", useLight:"Hellen Modus verwenden", useDark:"Dunklen Modus verwenden", addFavorite:"{name} zu Favoriten hinzufügen", removeFavorite:"{name} aus Favoriten entfernen", importSuccess:"Einstellungen importiert. Die Anwendung wird neu geladen.", importError:"Die ausgewählte Datei ist kein gültiger NetAdmin-Toolbox-Export.", network:"Netzwerk", copy:"Kopieren", convert:"Umwandeln",
+    tool_ipv4_name:"IPv4-Rechner", tool_ipv4_description:"Subnetzgrenzen, Hosts, Masken und Adressinformationen berechnen.", tool_ipv6_name:"IPv6-Rechner", tool_ipv6_description:"IPv6-Netze erweitern, komprimieren, klassifizieren und berechnen.", tool_subnet_planner_name:"Subnetzplaner", tool_subnet_planner_description:"CIDR, Wildcard, VLSM und Routenzusammenfassungen planen.", tool_mac_converter_name:"MAC-Adresskonverter", tool_mac_converter_description:"MAC-Formate umwandeln und Adresseigenschaften erkennen.", tool_port_search_name:"Portsuche", tool_port_search_description:"Standardports nach Nummer oder Dienstname durchsuchen.",
+    macTitle:"MAC-Adresskonverter", macSummary:"Gängige MAC-Adressformate umwandeln und den Adresstyp prüfen.", macInput:"MAC-Adresse", macColon:"Doppelpunktformat", macHyphen:"Bindestrichformat", macCisco:"Cisco-Format", macPlain:"Format ohne Trennzeichen", macType:"Adresstyp", macAdministration:"Verwaltung", macBroadcast:"Broadcast", macMulticast:"Multicast", macUnicast:"Unicast", macLocal:"Lokal verwaltet", macGlobal:"Global verwaltet", macInvalid:"Bitte eine gültige 48-Bit-MAC-Adresse eingeben.",
+    portTitle:"Portsuche", portSummary:"Gängige TCP- und UDP-Dienste nach Portnummer, Protokoll oder Name finden.", portQuery:"Portnummer oder Dienst", portRanges:"Bereiche: Well-known 0–1023, Registered 1024–49151, Dynamic 49152–65535.", port:"Port", protocol:"Protokoll", service:"Dienst", range:"Bereich", description:"Beschreibung", noPorts:"Keine passenden Standardports gefunden.", port_wellKnown:"Well-known", port_registered:"Registered", port_dynamic:"Dynamic"
   }
 };
 
-export function normalizeLocale(locale) {
-  const short = String(locale || "").toLowerCase().split("-")[0];
-  return SUPPORTED.has(short) ? short : DEFAULT_LOCALE;
-}
-
-export function currentLocale() {
-  return normalizeLocale(getSetting("locale", navigator.language));
-}
-
-export function setLocale(locale) {
-  const normalized = normalizeLocale(locale);
-  setSetting("locale", normalized);
-  document.documentElement.lang = normalized;
-  return normalized;
-}
-
-export function initializeLocale() {
-  return setLocale(currentLocale());
-}
-
-export function t(key, variables = {}, locale = currentLocale()) {
-  const template = messages[normalizeLocale(locale)]?.[key] ?? messages[DEFAULT_LOCALE]?.[key] ?? key;
-  return Object.entries(variables).reduce(
-    (text, [name, value]) => text.replaceAll(`{${name}}`, String(value)),
-    template
-  );
-}
+export function normalizeLocale(locale) { const short = String(locale || "").toLowerCase().split("-")[0]; return SUPPORTED.has(short) ? short : DEFAULT_LOCALE; }
+export function currentLocale() { return normalizeLocale(getSetting("locale", navigator.language)); }
+export function setLocale(locale) { const normalized = normalizeLocale(locale); setSetting("locale", normalized); document.documentElement.lang = normalized; return normalized; }
+export function initializeLocale() { return setLocale(currentLocale()); }
+export function t(key, variables = {}, locale = currentLocale()) { const template = messages[normalizeLocale(locale)]?.[key] ?? messages[DEFAULT_LOCALE]?.[key] ?? key; return Object.entries(variables).reduce((text,[name,value]) => text.replaceAll(`{${name}}`, String(value)), template); }
