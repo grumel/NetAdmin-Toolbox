@@ -52,14 +52,14 @@ test("every app-shell entry exists in the repository", async () => {
 });
 
 test("offline navigation falls back to the cached application shell", () => {
-  assert.match(serviceWorker, /const OFFLINE_DOCUMENT = "index\.html";/);
-  assert.match(serviceWorker, /request\.mode === "navigate"/);
+  assert.match(serviceWorker, /const\s+OFFLINE_DOCUMENT\s*=\s*"index\.html";/);
+  assert.match(serviceWorker, /request\.mode\s*===\s*"navigate"/);
   assert.match(serviceWorker, /caches\.match\(OFFLINE_DOCUMENT\)/);
 });
 
 test("runtime caching remains restricted to safe same-origin static responses", () => {
-  assert.match(serviceWorker, /url\.origin === self\.location\.origin/);
+  assert.match(serviceWorker, /url\.origin\s*===\s*self\.location\.origin/);
   assert.match(serviceWorker, /response\.ok/);
-  assert.match(serviceWorker, /response\.type === "basic"/);
-  assert.doesNotMatch(serviceWorker, /cache\.put\(event\.request, response\)/);
+  assert.match(serviceWorker, /response\.type\s*===\s*"basic"/);
+  assert.doesNotMatch(serviceWorker, /cache\.put\(event\.request\s*,\s*response\)/);
 });
