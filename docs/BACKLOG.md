@@ -4,7 +4,7 @@ Work is ordered by priority. Complete P1 items before starting the next major fe
 
 ## P1 — IPv4 hardening
 
-- [ ] Validate all exported IPv4 helper inputs or document strict preconditions
+- [x] Validate all exported IPv4 helper inputs and document strict return contracts
 - [ ] Track validation state independently for IP address, prefix and netmask
 - [ ] Associate field-specific errors with the relevant controls
 - [ ] Stop announcing successful recalculation on every keystroke

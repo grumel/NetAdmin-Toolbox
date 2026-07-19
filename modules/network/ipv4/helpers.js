@@ -34,6 +34,7 @@ function isValidSubnetEntry(entry) {
     && entry[1] <= 32;
 }
 
+/** Parses dotted-decimal input; returns four octets or null for invalid input. */
 export function parseIPv4(value) {
   const octets = String(value).trim().split(".");
   if (octets.length !== 4 || octets.some((octet) => !/^\d{1,3}$/.test(octet))) return null;
@@ -41,31 +42,37 @@ export function parseIPv4(value) {
   return isValidOctets(numbers) ? numbers : null;
 }
 
+/** Parses an IPv4 prefix with an optional slash; returns 0–32 or null. */
 export function parsePrefix(value) {
   const normalized = String(value).trim().replace(/^\//, "");
   return /^(?:[0-9]|[12]\d|3[0-2])$/.test(normalized) ? Number(normalized) : null;
 }
 
+/** Converts four integer octets to an unsigned 32-bit integer, or null. */
 export function ipv4ToInteger(octets) {
   if (!isValidOctets(octets)) return null;
   return octets.reduce((address, octet) => ((address << 8) | octet) >>> 0, 0);
 }
 
+/** Converts an unsigned 32-bit integer to dotted decimal, or null. */
 export function integerToIPv4(address) {
   if (!isUint32(address)) return null;
   return [24, 16, 8, 0].map((shift) => (address >>> shift) & 255).join(".");
 }
 
+/** Builds an unsigned subnet mask for prefix 0–32, or null. */
 export function maskFromPrefix(prefix) {
   if (!Number.isInteger(prefix) || prefix < 0 || prefix > 32) return null;
   return prefix === 0 ? 0 : (UINT32_MAX << (32 - prefix)) >>> 0;
 }
 
+/** Builds a dotted-decimal netmask for prefix 0–32, or null. */
 export function netmaskFromPrefix(prefix) {
   const mask = maskFromPrefix(prefix);
   return mask === null ? null : integerToIPv4(mask);
 }
 
+/** Parses a contiguous netmask and returns its prefix, or null. */
 export function prefixFromNetmask(value) {
   const octets = Array.isArray(value) ? value : parseIPv4(value);
   const address = ipv4ToInteger(octets);
@@ -74,17 +81,20 @@ export function prefixFromNetmask(value) {
   return (inverse & (inverse + 1)) === 0 ? Math.clz32(inverse) : null;
 }
 
+/** Tests unsigned address membership; returns false for invalid arguments. */
 export function isInSubnet(address, network, prefix) {
   const mask = maskFromPrefix(prefix);
   if (!isUint32(address) || !isUint32(network) || mask === null) return false;
   return (address & mask) === (network & mask);
 }
 
+/** Tests membership against [network, prefix] entries; invalid input returns false. */
 export function isInAnySubnet(address, entries) {
   if (!isUint32(address) || !Array.isArray(entries) || !entries.every(isValidSubnetEntry)) return false;
   return entries.some(([network, prefix]) => isInSubnet(address, network, prefix));
 }
 
+/** Returns the historical class for octet 0–255, or null otherwise. */
 export function historicalAddressClass(firstOctet) {
   if (!Number.isInteger(firstOctet) || firstOctet < 0 || firstOctet > 255) return null;
   if (firstOctet <= 127) return "A";
