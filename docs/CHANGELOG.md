@@ -7,6 +7,7 @@ All notable project changes should be recorded here. The format follows Keep a C
 ### Added
 
 - Improved IPv4 validation error contrast in the light theme.
+- Added browser coverage proving IPv4 address, prefix, and netmask validation states remain independent.
 - Explicit input and return-value contracts for all exported IPv4 helper functions.
 - Long-term product vision
 - Product roadmap and prioritized backlog
