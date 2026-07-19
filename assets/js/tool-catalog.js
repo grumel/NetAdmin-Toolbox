@@ -8,6 +8,7 @@ const definitions = [
   { id:"port-search", icon:"PORT", nameKey:"tool_port_search_name", descriptionKey:"tool_port_search_description", keywords:["port","tcp","udp","service","standard ports"] },
   { id:"dns-reference", icon:"DNS", nameKey:"tool_dns_reference_name", descriptionKey:"tool_dns_reference_description", keywords:["dns","record","a","aaaa","mx","txt","cname","soa","ns","srv","caa","dnssec"] },
   { id:"acl-generator", route:"acl-generator", icon:"ACL", name:() => t("network") === "Netzwerk" ? "ACL-Generator" : "ACL Generator", description:() => t("network") === "Netzwerk" ? "Cisco Extended-IPv4-Zugriffslisten erstellen." : "Build Cisco extended IPv4 access-control entries.", keywords:["cisco","acl","access list","permit","deny"] },
+  { id:"acl-optimizer", route:"acl-optimizer", icon:"OPT", name:() => t("network") === "Netzwerk" ? "ACL-Optimierer" : "ACL Optimizer", description:() => t("network") === "Netzwerk" ? "Doppelte und überschattete ACL-Regeln entfernen." : "Remove duplicate and shadowed ACL rules.", keywords:["cisco","acl","optimize","duplicate","shadow"] },
   { id:"vlan-calculator", route:"vlan-calculator", icon:"VLAN", name:() => t("network") === "Netzwerk" ? "VLAN-Rechner" : "VLAN Calculator", description:() => t("network") === "Netzwerk" ? "VLAN-IDs prüfen und Cisco-Konfiguration erzeugen." : "Validate VLAN IDs and generate Cisco configuration.", keywords:["cisco","vlan","switch","trunk","access"] }
 ];
 
