@@ -6,6 +6,8 @@ All notable project changes should be recorded here. The format follows Keep a C
 
 ### Added
 
+- Explicit input and return-value contracts for all exported IPv4 helper functions.
+
 - Long-term product vision
 - Product roadmap and prioritized backlog
 - Architecture and coding standards
