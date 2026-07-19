@@ -6,6 +6,7 @@ const routes = {
   "subnet-tools": () => import("../../modules/network/subnet-tools/index.js"),
   "mac-converter": () => import("../../modules/network/mac-converter/index.js"),
   "port-search": () => import("../../modules/network/port-search/index.js"),
+  "dns-reference": () => import("../../modules/network/dns-reference/index.js"),
   cisco: () => import("../../modules/cisco/index.js"), windows: () => import("../../modules/windows/index.js"), linux: () => import("../../modules/linux/index.js"), security: () => import("../../modules/security/index.js"), developer: () => import("../../modules/developer/index.js")
 };
 export const navigationItems = [["dashboard","Dashboard","▦"],["network","Network","⌁"],["cisco","Cisco","◈"],["windows","Windows","⊞"],["linux","Linux","◒"],["security","Security","◉"],["developer","Developer","⌘"]];
