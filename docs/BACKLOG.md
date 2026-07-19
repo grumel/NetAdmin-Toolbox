@@ -6,7 +6,7 @@ Work is ordered by priority. Complete P1 items before starting the next major fe
 
 - [x] Validate all exported IPv4 helper inputs and document strict return contracts
 - [x] Track validation state independently for IP address, prefix and netmask
-- [ ] Associate field-specific errors with the relevant controls
+- [x] Associate field-specific errors with the relevant controls
 - [ ] Stop announcing successful recalculation on every keystroke
 - [x] Improve light-theme error contrast
 - [ ] Detect unspecified and current-network ranges in `0.0.0.0/8`
