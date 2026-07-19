@@ -1,9 +1,9 @@
-const CACHE_NAME = "netadmin-toolbox-v11";
+const CACHE_NAME = "netadmin-toolbox-v12";
 const APP_SHELL = [
   "./", "index.html", "manifest.json", "assets/css/styles.css", "assets/js/app.js",
   "assets/js/router.js", "assets/js/theme.js", "assets/js/storage.js", "assets/js/tool-catalog.js",
   "assets/js/tool-state.js", "assets/js/command-palette.js", "assets/js/i18n.js",
-  "assets/js/settings-transfer.js", "assets/icons/icon.svg",
+  "assets/js/settings-transfer.js", "assets/js/version.js", "assets/icons/icon.svg",
   "modules/dashboard/index.js", "modules/network/index.js", "modules/cisco/index.js",
   "modules/windows/index.js", "modules/linux/index.js", "modules/security/index.js",
   "modules/developer/index.js", "modules/network/ipv4/index.js",
