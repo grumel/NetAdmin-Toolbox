@@ -49,7 +49,7 @@ This roadmap reflects the current browser-based, offline-first architecture of N
 ### v0.6 — Diagnostics and reference tools
 
 - [x] DNS record reference
-- [ ] DNS query helper using the browser's DNS-over-HTTPS capabilities
+- [x] DNS query helper using browser-based DNS over HTTPS
 - [ ] IP and hostname input validation shared across tools
 - [ ] Export selected calculation results as CSV
 - [ ] Improve printable result layouts
