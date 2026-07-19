@@ -6,7 +6,11 @@ globalThis.localStorage = {
   getItem: (key) => values.has(key) ? values.get(key) : null,
   setItem: (key, value) => values.set(key, String(value))
 };
-globalThis.navigator = { language: "de-DE" };
+Object.defineProperty(globalThis, "navigator", {
+  value: { language: "de-DE" },
+  configurable: true,
+  writable: true
+});
 globalThis.document = { documentElement: { lang: "", dataset: {} } };
 
 const { normalizeLocale, setLocale, t } = await import("../../assets/js/i18n.js");
