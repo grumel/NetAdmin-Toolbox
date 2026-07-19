@@ -52,7 +52,7 @@ This roadmap records product milestones. Detailed work items belong in [BACKLOG.
 - [x] VLAN calculator
 - [x] Interface converter
 - [x] OSPF helper
-- [ ] Static-route helper
+- [x] Static-route helper
 
 ## 0.6.x — Windows Toolkit
 

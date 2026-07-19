@@ -8,6 +8,7 @@ The format is based on Keep a Changelog and the project follows Semantic Version
 
 ### Added
 
+- Cisco static-route helper.
 - Cisco OSPF network command helper.
 - Cisco interface name converter.
 - Cisco ACL optimizer for duplicate and shadowed rules.
