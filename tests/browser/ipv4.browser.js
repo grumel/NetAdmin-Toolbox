@@ -1,4 +1,5 @@
 import { initialize, render } from "../../modules/network/ipv4/index.js";
+import { setLocale } from "../../assets/js/i18n.js";
 
 const results = document.querySelector("#test-results");
 const fixture = document.querySelector("#test-fixture");
@@ -36,6 +37,7 @@ async function run(name, test) {
   }
 }
 
+setLocale("en");
 fixture.innerHTML = render();
 initialize(fixture);
 
@@ -150,6 +152,17 @@ await run("missing clipboard API and failed fallback report an error", async () 
   } finally {
     document.execCommand = originalExecCommand;
   }
+});
+
+await run("language changes re-render translated IPv4 UI and results", () => {
+  setLocale("de");
+  fixture.innerHTML = render();
+  initialize(fixture);
+  assert(fixture.querySelector("h1")?.textContent === "IPv4-Rechner", "IPv4 title was not translated");
+  assert(fixture.querySelector("label[for='ipv4-address']")?.textContent.includes("IPv4-Adresse"), "IPv4 input label was not translated");
+  assert(fixture.querySelector('[data-action="copy-all"]')?.textContent === "Alle kopieren", "copy-all button was not translated");
+  assert(fixture.querySelector('[data-result="rfc1918"]')?.textContent === "Ja", "result text was not translated");
+  setLocale("en");
 });
 
 const summary = document.createElement("p");

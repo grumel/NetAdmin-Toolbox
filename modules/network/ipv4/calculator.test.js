@@ -76,8 +76,8 @@ test("validators produce structured live-validation results", () => {
   const invalidInput = validateCalculationInput("192.0.2", "/40");
   assert.equal(invalidInput.valid, false);
   assert.deepEqual(Object.keys(invalidInput.errors), ["address", "prefix"]);
-  assert.match(invalidInput.errors.address, /valid IPv4 address/);
-  assert.match(invalidInput.errors.prefix, /\/0 to \/32/);
+  assert.equal(invalidInput.errors.address, "ipv4InvalidAddress");
+  assert.equal(invalidInput.errors.prefix, "ipv4InvalidPrefix");
 });
 
 test("calculator derives the complete /24 subnet", () => {

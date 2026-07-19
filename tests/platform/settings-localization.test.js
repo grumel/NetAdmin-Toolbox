@@ -10,6 +10,8 @@ globalThis.document = { documentElement: { lang: "", dataset: {} } };
 
 const { normalizeLocale, setLocale, t } = await import("../../assets/js/i18n.js");
 const { createSettingsExport, importSettings, serializeSettings, validateSettingsImport } = await import("../../assets/js/settings-transfer.js");
+const { render: renderIpv4 } = await import("../../modules/network/ipv4/index.js");
+const { formatBoolean } = await import("../../modules/network/ipv4/formatter.js");
 
 test("localization normalizes supported languages and falls back safely", () => {
   assert.equal(normalizeLocale("de-DE"), "de");
@@ -18,6 +20,19 @@ test("localization normalizes supported languages and falls back safely", () => 
   assert.equal(t("addFavorite", { name: "IPv6" }, "en"), "Add IPv6 to favorites");
   assert.equal(setLocale("de"), "de");
   assert.equal(document.documentElement.lang, "de");
+});
+
+test("IPv4 Calculator renders translated labels and result text", () => {
+  setLocale("de");
+  const markup = renderIpv4();
+  assert.match(markup, /IPv4-Rechner/);
+  assert.match(markup, /IPv4-Adresse/);
+  assert.match(markup, /Netzmaske/);
+  assert.match(markup, /Alle kopieren/);
+  assert.match(markup, /Netzwerk/);
+  assert.equal(formatBoolean(true), "Ja");
+  assert.equal(formatBoolean(false), "Nein");
+  setLocale("en");
 });
 
 test("settings export is versioned and round-trips supported preferences", () => {

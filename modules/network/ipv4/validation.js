@@ -6,19 +6,17 @@ const invalid = (message) => ({ valid: false, message, value: null });
 
 /** Pure validators return structured results so UIs can present errors consistently. */
 export function validateIPv4(value) {
-  return isValidIPv4(value)
-    ? valid(parseIPv4(value))
-    : invalid("Enter a valid IPv4 address, for example 192.168.1.42.");
+  return isValidIPv4(value) ? valid(parseIPv4(value)) : invalid("ipv4InvalidAddress");
 }
 
 export function validatePrefix(value) {
   const prefix = parsePrefix(value);
-  return prefix === null ? invalid("Enter a prefix from /0 to /32.") : valid(prefix);
+  return prefix === null ? invalid("ipv4InvalidPrefix") : valid(prefix);
 }
 
 export function validateNetmask(value) {
   const prefix = prefixFromNetmask(value);
-  return prefix === null ? invalid("Enter a contiguous netmask, for example 255.255.255.0.") : valid(prefix);
+  return prefix === null ? invalid("ipv4InvalidNetmask") : valid(prefix);
 }
 
 export function validateCalculationInput(addressValue, prefixValue) {

@@ -2,6 +2,7 @@ import { calculateSubnet } from "./calculator.js";
 import { formatCalculation, formatCopyAll, resultFields } from "./formatter.js";
 import { netmaskFromPrefix } from "./helpers.js";
 import { validateCalculationInput, validateIPv4, validateNetmask, validatePrefix } from "./validation.js";
+import { t } from "../../../assets/js/i18n.js";
 
 const STYLESHEET_ID = "ipv4-calculator-styles";
 
@@ -15,7 +16,10 @@ function ensureStyles() {
 }
 
 function outputMarkup() {
-  return resultFields.map(([key, label]) => `<div class="ipv4-result"><dt>${label}</dt><dd data-result="${key}">—</dd><button class="ipv4-copy" type="button" data-copy="${key}" aria-label="Copy ${label}" disabled>Copy</button></div>`).join("");
+  return resultFields.map(([key, labelKey]) => {
+    const label = t(labelKey);
+    return `<div class="ipv4-result"><dt>${label}</dt><dd data-result="${key}">—</dd><button class="ipv4-copy" type="button" data-copy="${key}" aria-label="${t("ipv4CopyValue", { label })}" disabled>${t("copy")}</button></div>`;
+  }).join("");
 }
 
 function fieldMarkup({ id, label, inputmode, value, spellcheck = true }) {
@@ -24,7 +28,7 @@ function fieldMarkup({ id, label, inputmode, value, spellcheck = true }) {
 }
 
 export function render() {
-  return `<section class="ipv4-calculator"><header class="page-header"><div><p class="eyebrow">Network tools</p><h1>IPv4 Calculator</h1><p class="page-summary">Calculate IPv4 subnet details instantly from an address and either a prefix or netmask.</p></div></header><section class="card" aria-label="IPv4 calculator"><div class="ipv4-inputs">${fieldMarkup({ id: "ipv4-address", label: "IPv4 address", inputmode: "decimal", value: "192.168.1.42", spellcheck: false })}${fieldMarkup({ id: "ipv4-prefix", label: "Prefix (for example /24)", inputmode: "numeric", value: "/24" })}${fieldMarkup({ id: "ipv4-netmask", label: "Netmask", inputmode: "decimal", value: "255.255.255.0", spellcheck: false })}</div><div class="ipv4-actions"><button class="ipv4-button ipv4-button-primary" type="button" data-action="copy-all">Copy all</button><button class="ipv4-button" type="button" data-action="example">Example</button><button class="ipv4-button" type="button" data-action="clear">Clear</button></div><p class="ipv4-message" id="ipv4-message" role="status" aria-live="polite"></p></section><aside class="card ipv4-guidance" aria-labelledby="ipv4-guidance-title"><h2 id="ipv4-guidance-title">Address classifications</h2><p>“Special-purpose / non-public” covers ranges reserved for protocol use, carrier-grade NAT, benchmarking, future use, or limited broadcast. It does not mean that every such address is invalid; the individual result rows show the applicable purpose.</p><p>Documentation ranges are intended for examples, while RFC1918 and link-local ranges are valid only within their defined local scope.</p></aside><dl class="ipv4-results" aria-label="IPv4 calculation results">${outputMarkup()}</dl></section>`;
+  return `<section class="ipv4-calculator"><header class="page-header"><div><p class="eyebrow">${t("ipv4Eyebrow")}</p><h1>${t("ipv4Title")}</h1><p class="page-summary">${t("ipv4Summary")}</p></div></header><section class="card" aria-label="${t("ipv4Workspace")}"><div class="ipv4-inputs">${fieldMarkup({ id: "ipv4-address", label: t("ipv4Address"), inputmode: "decimal", value: "192.168.1.42", spellcheck: false })}${fieldMarkup({ id: "ipv4-prefix", label: t("ipv4Prefix"), inputmode: "numeric", value: "/24" })}${fieldMarkup({ id: "ipv4-netmask", label: t("ipv4Netmask"), inputmode: "decimal", value: "255.255.255.0", spellcheck: false })}</div><div class="ipv4-actions"><button class="ipv4-button ipv4-button-primary" type="button" data-action="copy-all">${t("ipv4CopyAll")}</button><button class="ipv4-button" type="button" data-action="example">${t("ipv4Example")}</button><button class="ipv4-button" type="button" data-action="clear">${t("ipv4Clear")}</button></div><p class="ipv4-message" id="ipv4-message" role="status" aria-live="polite"></p></section><aside class="card ipv4-guidance" aria-labelledby="ipv4-guidance-title"><h2 id="ipv4-guidance-title">${t("ipv4GuidanceTitle")}</h2><p>${t("ipv4GuidanceSpecial")}</p><p>${t("ipv4GuidanceScope")}</p></aside><dl class="ipv4-results" aria-label="${t("ipv4Results")}">${outputMarkup()}</dl></section>`;
 }
 
 async function copyText(text) {
@@ -58,7 +62,7 @@ export function initialize(container) {
     const field = fields[name];
     const error = container.querySelector(`#${field.id}-error`);
     field.setAttribute("aria-invalid", String(!result.valid));
-    error.textContent = result.valid ? "" : result.message;
+    error.textContent = result.valid ? "" : t(result.message);
   };
   const renderResults = () => resultFields.forEach(([key]) => {
     container.querySelector(`[data-result="${key}"]`).textContent = formatted?.[key] ?? "—";
@@ -90,14 +94,14 @@ export function initialize(container) {
     if (!calculationInput.valid || !netmaskResult.valid) {
       invalidateCalculation();
       const firstError = addressResult.message || prefixResult.message || netmaskResult.message;
-      showMessage(firstError, true);
+      showMessage(t(firstError), true);
       return;
     }
 
     formatted = formatCalculation(calculateSubnet(calculationInput.value.octets, calculationInput.value.prefix));
     copyAll.disabled = false;
     renderResults();
-    showMessage(announce ? "Calculation updated." : "");
+    showMessage(announce ? t("ipv4CalculationUpdated") : "");
   };
 
   address.addEventListener("input", () => recalculate("address"));
@@ -124,7 +128,7 @@ export function initialize(container) {
     }
     const text = button.dataset.copy && formatted ? formatted[button.dataset.copy] : button.dataset.action === "copy-all" && formatted ? formatCopyAll(formatted) : null;
     if (!text) return;
-    showMessage(await copyText(text) ? "Copied to clipboard." : "Copy failed; select the value and copy it manually.");
+    showMessage(await copyText(text) ? t("ipv4Copied") : t("ipv4CopyFailed"));
   });
   recalculate("prefix");
 }
