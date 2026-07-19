@@ -5,7 +5,8 @@ const definitions = [
   { id:"ipv6", icon:"v6", nameKey:"tool_ipv6_name", descriptionKey:"tool_ipv6_description", keywords:["ipv6","prefix","network"] },
   { id:"subnet-planner", route:"subnet-tools", icon:"SN", nameKey:"tool_subnet_planner_name", descriptionKey:"tool_subnet_planner_description", keywords:["vlsm","wildcard","summary","supernet"] },
   { id:"mac-converter", icon:"MAC", nameKey:"tool_mac_converter_name", descriptionKey:"tool_mac_converter_description", keywords:["mac","oui","cisco","ethernet","address"] },
-  { id:"port-search", icon:"PORT", nameKey:"tool_port_search_name", descriptionKey:"tool_port_search_description", keywords:["port","tcp","udp","service","standard ports"] }
+  { id:"port-search", icon:"PORT", nameKey:"tool_port_search_name", descriptionKey:"tool_port_search_description", keywords:["port","tcp","udp","service","standard ports"] },
+  { id:"dns-reference", icon:"DNS", nameKey:"tool_dns_reference_name", descriptionKey:"tool_dns_reference_description", keywords:["dns","record","a","aaaa","mx","txt","cname","soa","ns","srv","caa","dnssec"] }
 ];
 
 export function localizedTools() {
