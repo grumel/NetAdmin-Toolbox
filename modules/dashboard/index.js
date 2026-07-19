@@ -31,7 +31,7 @@ export function initialize(container) {
   const locale = container.querySelector("#locale-select");
   if (locale) locale.value = document.documentElement.lang || "en";
 
-  container.addEventListener("click", (event) => {
+  container.onclick = (event) => {
     const favorite = event.target.closest("[data-favorite]");
     if (favorite) {
       toggleFavorite(favorite.dataset.favorite);
@@ -40,7 +40,7 @@ export function initialize(container) {
       return;
     }
     if (event.target.closest("#export-settings")) downloadSettings();
-  });
+  };
 
   locale?.addEventListener("change", () => {
     localStorage.setItem("netadmin-toolbox:locale", locale.value);
