@@ -25,3 +25,30 @@
 @media (min-width:720px) { .app-layout { display:grid; grid-template-columns:16rem minmax(0,1fr); } .sidebar { position:sticky; top:0; align-items:stretch; flex-direction:column; height:100vh; padding:1.25rem; border-right:1px solid var(--border); border-bottom:0; } .navigation { display:grid; flex:0; margin-top:2.5rem; overflow:visible; } .nav-link { width:100%; } .dashboard-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media (min-width:1080px) { .dashboard-grid { grid-template-columns:repeat(3,minmax(0,1fr)); } }
 @media (min-width:1380px) { .dashboard-grid { grid-template-columns:repeat(4,minmax(0,1fr)); } }
+@media print {
+  @page { size:A4; margin:14mm; }
+  :root,[data-theme="light"] { color-scheme:light; --page:#fff; --surface:#fff; --surface-raised:#fff; --border:#9ca3af; --text:#000; --muted:#374151; --accent:#000; --shadow:none; }
+  html,body { min-width:0; background:#fff!important; color:#000!important; font-size:10.5pt; }
+  .app-layout { display:block!important; min-height:0; }
+  .sidebar,.app-header,.skip-link,.command-palette,.install-button,.favorite-button,.settings-panel,.tool-form,.search-input,.tool-input-row,button { display:none!important; }
+  .workspace,.main-content,.tool-workspace { width:100%!important; max-width:none!important; margin:0!important; padding:0!important; }
+  .page-header { margin:0 0 8mm; break-after:avoid; }
+  .eyebrow { color:#000; }
+  h1 { font-size:20pt; letter-spacing:0; }
+  h2 { break-after:avoid; }
+  .page-summary,.card p,th { color:#374151!important; }
+  .card { margin:0 0 6mm; padding:5mm; border:1px solid #9ca3af; border-radius:0; box-shadow:none; break-inside:avoid; }
+  .dashboard-grid { display:block; }
+  .tool-card-shell { break-inside:avoid; }
+  .result-list,.result-row { break-inside:avoid; }
+  .result-row { grid-template-columns:42mm minmax(0,1fr)!important; padding:2.5mm 0; }
+  .result-row button { display:none!important; }
+  .table-scroll { overflow:visible; }
+  table { table-layout:auto; font-size:9pt; }
+  thead { display:table-header-group; }
+  tr { break-inside:avoid; }
+  th,td { padding:2.5mm 2mm; border-color:#9ca3af; overflow-wrap:anywhere; }
+  a { color:#000!important; text-decoration:none; }
+  a[href^="http"]::after { content:" (" attr(href) ")"; font-size:8pt; overflow-wrap:anywhere; }
+  code { color:#000; white-space:pre-wrap; overflow-wrap:anywhere; }
+}
