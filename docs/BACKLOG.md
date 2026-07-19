@@ -29,9 +29,9 @@ Work is ordered by priority. Complete P1 items before starting the next major fe
 
 - [x] Add IPv6 calculator foundations without coupling IPv6 semantics to IPv4 helpers
 - [x] Add CIDR, wildcard, VLSM, and route-summarisation tools from reusable pure functions
-- [ ] Add global tool search
-- [ ] Add favorites and recent tools
-- [ ] Add keyboard shortcuts and a command palette
+- [x] Add global tool search
+- [x] Add favorites and recent tools
+- [x] Add keyboard shortcuts and a command palette
 - [ ] Add structured import and export helpers
 - [ ] Add localization infrastructure
 - [ ] Add end-to-end tests, an accessibility audit, responsive review, and release automation
