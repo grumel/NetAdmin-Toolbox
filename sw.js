@@ -1,4 +1,4 @@
-const CACHE_NAME = "netadmin-toolbox-v15";
+const CACHE_NAME = "netadmin-toolbox-v16";
 const APP_SHELL = [
   "./", "index.html", "manifest.json", "assets/css/styles.css", "assets/js/app.js",
   "assets/js/router.js", "assets/js/theme.js", "assets/js/storage.js", "assets/js/tool-catalog.js",
@@ -15,70 +15,10 @@ const APP_SHELL = [
   "modules/network/port-search/index.js", "modules/network/dns-reference/index.js"
 ];
 const CACHEABLE_DESTINATIONS = new Set(["script", "style", "image", "font", "manifest"]);
-const NETWORK_FIRST_DESTINATIONS = new Set(["script", "style", "manifest"]);
 const OFFLINE_DOCUMENT = "index.html";
-
-self.addEventListener("install", (event) => {
-  event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_SHELL)));
-  self.skipWaiting();
-});
-
-self.addEventListener("activate", (event) => {
-  event.waitUntil(
-    caches.keys().then((keys) => Promise.all(keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key))))
-  );
-  self.clients.claim();
-});
-
-function mayCache(request, response) {
-  const url = new URL(request.url);
-  return url.origin === self.location.origin && CACHEABLE_DESTINATIONS.has(request.destination) && response.ok && response.type === "basic";
-}
-
-async function respondToNavigation(request) {
-  try {
-    return await fetch(request);
-  } catch {
-    const cached = await caches.match(OFFLINE_DOCUMENT);
-    return cached || Response.error();
-  }
-}
-
-async function respondNetworkFirst(event) {
-  try {
-    const response = await fetch(event.request);
-    if (mayCache(event.request, response)) {
-      const copy = response.clone();
-      event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy)));
-    }
-    return response;
-  } catch {
-    const cached = await caches.match(event.request);
-    return cached || Response.error();
-  }
-}
-
-async function respondCacheFirst(event) {
-  const cached = await caches.match(event.request);
-  if (cached) return cached;
-
-  const response = await fetch(event.request);
-  if (mayCache(event.request, response)) {
-    const copy = response.clone();
-    event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy)));
-  }
-  return response;
-}
-
-self.addEventListener("fetch", (event) => {
-  if (event.request.method !== "GET") return;
-  if (event.request.mode === "navigate") {
-    event.respondWith(respondToNavigation(event.request));
-    return;
-  }
-  if (NETWORK_FIRST_DESTINATIONS.has(event.request.destination)) {
-    event.respondWith(respondNetworkFirst(event));
-    return;
-  }
-  event.respondWith(respondCacheFirst(event));
-});
+self.addEventListener("install", event => { event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(APP_SHELL))); self.skipWaiting(); });
+self.addEventListener("activate", event => { event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key))))); self.clients.claim(); });
+function mayCache(request,response){const url=new URL(request.url);return url.origin===self.location.origin&&CACHEABLE_DESTINATIONS.has(request.destination)&&response.ok&&response.type==="basic";}
+async function respondToNavigation(request){try{return await fetch(request);}catch{const cached=await caches.match(OFFLINE_DOCUMENT);return cached||Response.error();}}
+async function respondToAsset(event){try{const response=await fetch(event.request);if(mayCache(event.request,response)){const copy=response.clone();event.waitUntil(caches.open(CACHE_NAME).then(cache=>cache.put(event.request,copy)));}return response;}catch{const cached=await caches.match(event.request);return cached||Response.error();}}
+self.addEventListener("fetch",event=>{if(event.request.method!=="GET")return;if(event.request.mode==="navigate"){event.respondWith(respondToNavigation(event.request));return;}event.respondWith(respondToAsset(event));});
