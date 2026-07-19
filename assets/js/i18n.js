@@ -18,8 +18,14 @@ const messages = {
   }
 };
 
+function browserLanguage() {
+  return typeof navigator !== "undefined" && typeof navigator.language === "string"
+    ? navigator.language
+    : DEFAULT_LOCALE;
+}
+
 export function normalizeLocale(locale) { const short = String(locale || "").toLowerCase().split("-")[0]; return SUPPORTED.has(short) ? short : DEFAULT_LOCALE; }
-export function currentLocale() { return normalizeLocale(getSetting("locale", navigator.language)); }
-export function setLocale(locale) { const normalized = normalizeLocale(locale); setSetting("locale", normalized); document.documentElement.lang = normalized; return normalized; }
+export function currentLocale() { return normalizeLocale(getSetting("locale", browserLanguage())); }
+export function setLocale(locale) { const normalized = normalizeLocale(locale); setSetting("locale", normalized); if (typeof document !== "undefined" && document.documentElement) document.documentElement.lang = normalized; return normalized; }
 export function initializeLocale() { return setLocale(currentLocale()); }
 export function t(key, variables = {}, locale = currentLocale()) { const template = messages[normalizeLocale(locale)]?.[key] ?? messages[DEFAULT_LOCALE]?.[key] ?? key; return Object.entries(variables).reduce((text,[name,value]) => text.replaceAll(`{${name}}`, String(value)), template); }
