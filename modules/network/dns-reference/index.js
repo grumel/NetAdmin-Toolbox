@@ -1,4 +1,5 @@
 import { t } from "../../../assets/js/i18n.js";
+import { isValidHostname, normalizeHostname } from "../shared/validation.js";
 
 export const DNS_RECORDS = [
   ["A", "IPv4 address", "Maps a hostname to an IPv4 address.", "example.com. 3600 IN A 192.0.2.10"],
@@ -26,13 +27,11 @@ export function searchDnsRecords(query) {
 }
 
 export function validateDnsName(value) {
-  const name = String(value).trim().replace(/\.$/, "");
-  if (!name || name.length > 253) return false;
-  return name.split(".").every((label) => label.length > 0 && label.length <= 63 && /^[a-z0-9_](?:[a-z0-9_-]*[a-z0-9_])?$/i.test(label));
+  return isValidHostname(value);
 }
 
 export function buildDnsQueryUrl(name, type) {
-  const params = new URLSearchParams({ name: String(name).trim(), type: String(type).toUpperCase() });
+  const params = new URLSearchParams({ name: normalizeHostname(name), type: String(type).toUpperCase() });
   return `https://dns.google/resolve?${params.toString()}`;
 }
 
@@ -91,7 +90,7 @@ export function initialize(container) {
 
   form?.addEventListener("submit", async (event) => {
     event.preventDefault();
-    const name = nameInput.value.trim();
+    const name = normalizeHostname(nameInput.value);
     const type = typeInput.value;
     results.hidden = true;
     answerBody.innerHTML = "";
@@ -102,6 +101,7 @@ export function initialize(container) {
       return;
     }
 
+    nameInput.value = name;
     status.textContent = t("dnsLookupLoading");
     try {
       const response = await fetch(buildDnsQueryUrl(name, type), {
