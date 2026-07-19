@@ -1,5 +1,8 @@
+import { initializeCommandPalette } from "./command-palette.js";
 import { activeRoute, renderNavigation, renderRoute } from "./router.js";
 import { currentTheme, initializeTheme, toggleTheme } from "./theme.js";
+import { findTool } from "./tool-catalog.js";
+import { recordRecentTool } from "./tool-state.js";
 
 const content = document.querySelector("#app-content");
 const navigation = document.querySelector("#primary-navigation");
@@ -12,6 +15,7 @@ async function render() {
   navigation.innerHTML = renderNavigation(view);
   const rendered = await renderRoute(view, content);
   if (!rendered) return;
+  if (findTool(view)) recordRecentTool(view);
   content.focus({ preventScroll: true });
   updateConnectionStatus();
   setupInstallButton();
@@ -51,6 +55,7 @@ window.addEventListener("beforeinstallprompt", (event) => { event.preventDefault
 
 initializeTheme();
 updateThemeButton();
+initializeCommandPalette();
 render();
 
 if ("serviceWorker" in navigator) {
