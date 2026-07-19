@@ -1,17 +1,5 @@
 # Definition of Done
 
-<<<<<<< HEAD
-A change is done when it:
-
-- Meets agreed acceptance criteria and respects [PROJECT_RULES.md](PROJECT_RULES.md).
-- Keeps domain logic pure and follows the module boundaries in [ARCHITECTURE.md](ARCHITECTURE.md).
-- Includes unit tests for changed pure logic and browser tests where interaction changes.
-- Passes `npm test` and `git diff --check`.
-- Supports keyboard use, meaningful validation, responsive layout, and both themes.
-- Updates user-facing, architecture, test, and release documentation as applicable.
-- Updates the service-worker asset list and cache version when shipped runtime assets change.
-- Receives review with no unresolved correctness, security, or accessibility concerns.
-=======
 A task is complete only when all applicable items are satisfied.
 
 ## Functionality
@@ -58,4 +46,3 @@ A task is complete only when all applicable items are satisfied.
 - [ ] Significant decisions have an ADR.
 - [ ] The change is represented by a focused commit with a meaningful message.
 - [ ] The working tree contains no unrelated changes.
->>>>>>> dde56c2a9eb22362e4d327c2dace76432dcad430

@@ -1,6 +1,6 @@
 # NetAdmin-Toolbox Roadmap
 
-This roadmap records product milestones. Detailed work items belong in [BACKLOG.md](BACKLOG.md). Milestones describe intended outcomes, not release promises.
+This roadmap records product milestones. Detailed work items belong in [BACKLOG.md](BACKLOG.md).
 
 ## 0.1.x — Foundation
 
@@ -16,12 +16,11 @@ This roadmap records product milestones. Detailed work items belong in [BACKLOG.
 - [x] IPv4 calculator implementation
 - [x] Separation of UI, validation, calculation and formatting
 - [x] Initial unit tests
-- [x] IPv4 helper and validation hardening
-- [x] Complete special-purpose range classification
-- [x] Accessibility refinement for field errors and live feedback
+- [ ] IPv4 hardening
+- [ ] Complete special-purpose range classification
+- [ ] Accessibility refinement
 - [ ] Browser-level tests
-- [x] Service worker cache hardening
-- [ ] Offline and installability verification after cache changes
+- [ ] Service worker cache hardening
 
 ## 0.3.x — IPv6 Toolkit
 
@@ -38,7 +37,12 @@ This roadmap records product milestones. Detailed work items belong in [BACKLOG.
 - [ ] Wildcard converter
 - [ ] VLSM designer
 - [ ] Subnet planner
-- [ ] Export to text, JSON and CSV
+- [ ] Export to text and JSON
+
+## 0.6.0 — Shared Network Foundations
+
+- [x] Shared IPv4, IPv6, CIDR, hostname, and FQDN validation
+- [x] Shared CSV export for network-tool results
 
 ## 0.5.x — Routing and Cisco
 
@@ -88,5 +92,3 @@ This roadmap records product milestones. Detailed work items belong in [BACKLOG.
 - [ ] Supported-browser verification
 - [ ] Offline and installability verification
 - [ ] Stable release
-
-A release candidate requires stable core tools, documented offline behaviour, automated tests for pure logic and critical UI flows, an accessibility review, and release notes. See [DEFINITION_OF_DONE.md](DEFINITION_OF_DONE.md).

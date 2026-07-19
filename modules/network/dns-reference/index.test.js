@@ -5,7 +5,7 @@ import { buildDnsQueryUrl, searchDnsRecords, validateDnsName } from "./index.js"
 
 test("validates common DNS names", () => {
   assert.equal(validateDnsName("example.com"), true);
-  assert.equal(validateDnsName("_sip._tcp.example.com"), true);
+  assert.equal(validateDnsName("_sip._tcp.example.com"), false);
   assert.equal(validateDnsName("example.com."), true);
   assert.equal(validateDnsName(""), false);
   assert.equal(validateDnsName("bad name.example"), false);

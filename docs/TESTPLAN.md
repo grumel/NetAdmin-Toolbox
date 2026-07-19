@@ -1,45 +1,20 @@
 # Test Plan
 
-## Automated checks
+## Test levels
 
-Run the dependency-free Node.js suite with:
+### Unit tests
 
-```bash
-npm test
-git diff --check
-```
+Use Node's built-in test runner for pure validation, calculation, classification and formatting functions.
 
-The IPv4 unit tests cover parsing, prefixes, netmasks, subnet boundaries, `/0`, `/31`, `/32`, special-purpose ranges, validation, formatting, and exported-helper input guards. Router tests cover stale asynchronous imports.
+### Browser tests
 
-## Browser tests
+Cover routing, forms, accessibility state, clipboard behavior, theme behavior, responsive rendering and offline operation.
 
-Serve the repository root over HTTP:
+### Manual release checks
 
-```bash
-python3 -m http.server 8000
-```
+Verify installability, offline startup, keyboard navigation and representative desktop/mobile browsers before a release.
 
-Then open:
-
-```text
-http://localhost:8000/tests/browser/ipv4.html
-```
-
-The page runs the IPv4 module in a real browser DOM and reports each result. A successful run ends with `All browser tests passed.` and sets `data-test-status="passed"` on the document element.
-
-Current browser coverage includes:
-
-- initial calculation rendering;
-- field-specific live validation and associated error text;
-- clearing errors after corrected input;
-- prefix-to-netmask and netmask-to-prefix synchronization;
-- native focusability of inputs and action buttons;
-- focus behavior after Example and Clear;
-- clipboard success and status announcement.
-
-Run this suite in each supported browser before release. Clipboard fallback and offline/installability behavior remain separate P2 work items.
-
-## IPv4 calculator acceptance checks
+## IPv4 calculator
 
 ### Valid inputs
 
@@ -56,17 +31,20 @@ Run this suite in each supported browser before release. Clipboard fallback and 
 
 - Missing or incomplete octets
 - Octets outside `0..255`
+- Leading-zero policy violations
 - Prefixes below `0` or above `32`
 - Non-contiguous subnet masks
 - Non-numeric values
+- Conflicting prefix and netmask values
 
 ### Calculation assertions
 
-- Network and broadcast address
+- Network address
+- Broadcast address
 - First and last host
 - Total and usable address counts
 - Netmask and wildcard mask
-- Integer, hexadecimal, and binary formats
+- Integer, hexadecimal and binary formats
 - Reverse DNS host name
 
 ### Classification assertions
@@ -78,9 +56,21 @@ Run this suite in each supported browser before release. Clipboard fallback and 
 - Benchmarking `198.18.0.0/15`
 - Documentation ranges
 - Multicast `224.0.0.0/4`
-- Future-reserved `240.0.0.0/4`
-- Current-network `0.0.0.0/8`
+- Reserved `240.0.0.0/4`
+- Unspecified and current-network `0.0.0.0/8`
 - Limited broadcast `255.255.255.255`
+
+### Accessibility and interaction
+
+- Field-specific `aria-invalid`
+- Errors associated with the relevant field
+- No repetitive success announcements while typing
+- Keyboard access to all actions
+- Visible focus
+- Copy individual result
+- Copy all results
+- Clipboard fallback
+- Clear and example actions
 
 ## Router
 
@@ -94,10 +84,10 @@ Run this suite in each supported browser before release. Clipboard fallback and 
 - Application shell is cached.
 - Approved static assets work offline.
 - Failed and non-successful responses are not cached.
-- Unknown runtime GET responses are not cached indiscriminately.
+- Sensitive or unknown runtime GET responses are not cached indiscriminately.
 - Cache upgrades remove obsolete versions.
 - Manifest and service-worker registration remain valid.
 
 ## Release gate
 
-All automated tests must pass. Browser tests must pass in supported browsers. P1 backlog items for the target release must be complete, and manual release checks must be recorded.
+All automated tests must pass. P1 backlog items for the target release must be complete, and manual release checks must be recorded.

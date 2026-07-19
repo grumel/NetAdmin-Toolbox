@@ -1,5 +1,6 @@
 import { t } from "../../../assets/js/i18n.js";
 import { isValidHostname, normalizeHostname } from "../shared/validation.js";
+import { exportCSV } from "../../shared/csv-export.js";
 
 export const DNS_RECORDS = [
   ["A", "IPv4 address", "Maps a hostname to an IPv4 address.", "example.com. 3600 IN A 192.0.2.10"],
@@ -68,18 +69,20 @@ export function render() {
     <p id="dns-query-status" role="status" aria-live="polite"></p>
     <div id="dns-query-results" class="table-scroll" hidden><table><thead><tr><th>${t("dnsLookupAnswerName")}</th><th>${t("dnsRecordType")}</th><th>TTL</th><th>${t("dnsLookupData")}</th></tr></thead><tbody id="dns-query-answer-body"></tbody></table></div>
   </section>
-  <section class="card tool-workspace"><h2>${t("dnsReferenceListTitle")}</h2><label for="dns-record-query">${t("dnsReferenceQuery")}</label><input class="search-input" id="dns-record-query" type="search" autocomplete="off" placeholder="A, MX, SPF, certificate …"><div class="table-scroll"><table><thead><tr><th>${t("dnsRecordType")}</th><th>${t("dnsRecordName")}</th><th>${t("description")}</th><th>${t("dnsRecordExample")}</th></tr></thead><tbody id="dns-record-results">${rows(DNS_RECORDS)}</tbody></table></div><p id="dns-record-empty" hidden>${t("dnsReferenceEmpty")}</p></section>`;
+  <section class="card tool-workspace"><h2>${t("dnsReferenceListTitle")}</h2><label for="dns-record-query">${t("dnsReferenceQuery")}</label><input class="search-input" id="dns-record-query" type="search" autocomplete="off" placeholder="A, MX, SPF, certificate …"><button type="button" id="dns-export">${t("exportCsv")}</button><div class="table-scroll"><table><thead><tr><th>${t("dnsRecordType")}</th><th>${t("dnsRecordName")}</th><th>${t("description")}</th><th>${t("dnsRecordExample")}</th></tr></thead><tbody id="dns-record-results">${rows(DNS_RECORDS)}</tbody></table></div><p id="dns-record-empty" hidden>${t("dnsReferenceEmpty")}</p></section>`;
 }
 
 export function initialize(container) {
   const input = container.querySelector("#dns-record-query");
   const body = container.querySelector("#dns-record-results");
   const empty = container.querySelector("#dns-record-empty");
+  let matches = DNS_RECORDS;
   input?.addEventListener("input", () => {
-    const matches = searchDnsRecords(input.value);
+    matches = searchDnsRecords(input.value);
     body.innerHTML = rows(matches);
     empty.hidden = matches.length > 0;
   });
+  container.querySelector("#dns-export")?.addEventListener("click", () => exportCSV("dns-reference", ["Name", "Type", "TTL", "Answer"], matches.map(({ name, type, example }) => [name, type, "", example])));
 
   const form = container.querySelector("#dns-query-form");
   const nameInput = container.querySelector("#dns-query-name");

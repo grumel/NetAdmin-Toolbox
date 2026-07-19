@@ -1,28 +1,11 @@
 # Changelog
 
-<<<<<<< HEAD
-All notable project changes are documented here. The format follows the spirit of Keep a Changelog and uses semantic-version categories.
-=======
 All notable project changes should be recorded here. The format follows Keep a Changelog and the project follows Semantic Versioning.
->>>>>>> dde56c2a9eb22362e4d327c2dace76432dcad430
 
 ## Unreleased
 
 ### Added
 
-<<<<<<< HEAD
-- Modular PWA application shell with dashboard, theme support, hash router, and offline service worker.
-- Network area and IPv4 Calculator with subnet calculations, special-use classification, copy actions, and unit tests.
-- Project governance, architecture, testing, release, and decision documentation.
-
-### Changed
-
-- Navigation and dashboard now expose the Network and IPv4 Calculator workflows.
-
-### Pending
-
-- IPv4 accessibility, browser-test, cache-policy, and user-documentation hardening.
-=======
 - Long-term product vision
 - Product roadmap and prioritized backlog
 - Architecture and coding standards
@@ -57,4 +40,3 @@ All notable project changes should be recorded here. The format follows Keep a C
 - Dashboard and category modules
 - Theme and storage support
 - Service worker and web app manifest
->>>>>>> dde56c2a9eb22362e4d327c2dace76432dcad430

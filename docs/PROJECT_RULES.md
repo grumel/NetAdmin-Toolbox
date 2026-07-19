@@ -1,14 +1,5 @@
 # Project Rules
 
-<<<<<<< HEAD
-1. Preserve offline-first behaviour and user privacy; do not add tracking or telemetry.
-2. Keep runtime dependencies at zero unless an ADR documents and approves an exception.
-3. Prefer deterministic, locally executed tools; never send user-entered administration data to third parties.
-4. Maintain pure domain functions and modular boundaries.
-5. Treat accessibility, security, documentation, and tests as delivery requirements, not optional polish.
-6. Do not force-push shared branches, commit secrets, or mix unrelated changes in a pull request.
-7. Record material architectural decisions under [adr/](adr/).
-=======
 These rules apply to human contributors and coding agents.
 
 1. Use browser-native ES modules.
@@ -31,4 +22,3 @@ These rules apply to human contributors and coding agents.
 18. Do not push failing tests.
 19. Avoid direct changes to unrelated modules.
 20. Record significant architectural decisions in `docs/adr/`.
->>>>>>> dde56c2a9eb22362e4d327c2dace76432dcad430

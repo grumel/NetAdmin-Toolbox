@@ -3,6 +3,7 @@ import { formatCalculation, formatCopyAll, resultFields } from "./formatter.js";
 import { netmaskFromPrefix } from "./helpers.js";
 import { validateCalculationInput, validateIPv4, validateNetmask, validatePrefix } from "./validation.js";
 import { t } from "../../../assets/js/i18n.js";
+import { exportCSV } from "../../shared/csv-export.js";
 
 const STYLESHEET_ID = "ipv4-calculator-styles";
 
@@ -28,7 +29,7 @@ function fieldMarkup({ id, label, inputmode, value, spellcheck = true }) {
 }
 
 export function render() {
-  return `<section class="ipv4-calculator"><header class="page-header"><div><p class="eyebrow">${t("ipv4Eyebrow")}</p><h1>${t("ipv4Title")}</h1><p class="page-summary">${t("ipv4Summary")}</p></div></header><section class="card" aria-label="${t("ipv4Workspace")}"><div class="ipv4-inputs">${fieldMarkup({ id: "ipv4-address", label: t("ipv4Address"), inputmode: "decimal", value: "192.168.1.42", spellcheck: false })}${fieldMarkup({ id: "ipv4-prefix", label: t("ipv4Prefix"), inputmode: "numeric", value: "/24" })}${fieldMarkup({ id: "ipv4-netmask", label: t("ipv4Netmask"), inputmode: "decimal", value: "255.255.255.0", spellcheck: false })}</div><div class="ipv4-actions"><button class="ipv4-button ipv4-button-primary" type="button" data-action="copy-all">${t("ipv4CopyAll")}</button><button class="ipv4-button" type="button" data-action="example">${t("ipv4Example")}</button><button class="ipv4-button" type="button" data-action="clear">${t("ipv4Clear")}</button></div><p class="ipv4-message" id="ipv4-message" role="status" aria-live="polite"></p></section><aside class="card ipv4-guidance" aria-labelledby="ipv4-guidance-title"><h2 id="ipv4-guidance-title">${t("ipv4GuidanceTitle")}</h2><p>${t("ipv4GuidanceSpecial")}</p><p>${t("ipv4GuidanceScope")}</p></aside><dl class="ipv4-results" aria-label="${t("ipv4Results")}">${outputMarkup()}</dl></section>`;
+  return `<section class="ipv4-calculator"><header class="page-header"><div><p class="eyebrow">${t("ipv4Eyebrow")}</p><h1>${t("ipv4Title")}</h1><p class="page-summary">${t("ipv4Summary")}</p></div></header><section class="card" aria-label="${t("ipv4Workspace")}"><div class="ipv4-inputs">${fieldMarkup({ id: "ipv4-address", label: t("ipv4Address"), inputmode: "decimal", value: "192.168.1.42", spellcheck: false })}${fieldMarkup({ id: "ipv4-prefix", label: t("ipv4Prefix"), inputmode: "numeric", value: "/24" })}${fieldMarkup({ id: "ipv4-netmask", label: t("ipv4Netmask"), inputmode: "decimal", value: "255.255.255.0", spellcheck: false })}</div><div class="ipv4-actions"><button class="ipv4-button ipv4-button-primary" type="button" data-action="copy-all">${t("ipv4CopyAll")}</button><button class="ipv4-button" type="button" data-action="export-csv">${t("exportCsv")}</button><button class="ipv4-button" type="button" data-action="example">${t("ipv4Example")}</button><button class="ipv4-button" type="button" data-action="clear">${t("ipv4Clear")}</button></div><p class="ipv4-message" id="ipv4-message" role="status" aria-live="polite"></p></section><aside class="card ipv4-guidance" aria-labelledby="ipv4-guidance-title"><h2 id="ipv4-guidance-title">${t("ipv4GuidanceTitle")}</h2><p>${t("ipv4GuidanceSpecial")}</p><p>${t("ipv4GuidanceScope")}</p></aside><dl class="ipv4-results" aria-label="${t("ipv4Results")}">${outputMarkup()}</dl></section>`;
 }
 
 async function copyText(text) {
@@ -124,6 +125,10 @@ export function initialize(container) {
       netmask.value = "255.255.255.224";
       recalculate("prefix", true);
       address.focus();
+      return;
+    }
+    if (button.dataset.action === "export-csv" && formatted) {
+      exportCSV("ipv4-calculator", ["IP", "CIDR", "Netmask", "Wildcard", "Network", "Broadcast", "First Host", "Last Host", "Host Count"], [[address.value, `${formatted.network}/${prefix.value.replace(/^\//, "")}`, netmask.value, formatted.wildcard, formatted.network, formatted.broadcast, formatted.firstHost, formatted.lastHost, formatted.usableHosts]]);
       return;
     }
     const text = button.dataset.copy && formatted ? formatted[button.dataset.copy] : button.dataset.action === "copy-all" && formatted ? formatCopyAll(formatted) : null;
