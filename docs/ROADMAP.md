@@ -28,7 +28,7 @@ This roadmap records product milestones. Detailed work items belong in [BACKLOG.
 - [x] Expansion and compression
 - [x] Prefix calculations
 - [x] Address classification
-- [ ] Reverse DNS generation
+- [x] Reverse DNS generation
 - [x] Unit tests
 
 ## 0.4.x — Address Planning

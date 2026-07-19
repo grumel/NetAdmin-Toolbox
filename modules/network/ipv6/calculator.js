@@ -59,6 +59,11 @@ export function compressIPv6(value) {
   return `${before}::${after}` || "::";
 }
 
+/** Returns the RFC 3596 nibble-format reverse-DNS name for a valid IPv6 address. */
+export function reverseDnsIPv6(value) {
+  return `${expandIPv6(value).replaceAll(":", "").split("").reverse().join(".")}.ip6.arpa`;
+}
+
 export function classifyIPv6(value) {
   const address = typeof value === "bigint" ? value : parseIPv6(value);
   if (address === 0n) return "Unspecified";
@@ -84,6 +89,7 @@ export function calculateIPv6(input, prefixInput) {
     network: compressIPv6(network),
     lastAddress: compressIPv6(last),
     addressCount: 1n << BigInt(hostBits),
-    type: classifyIPv6(address)
+    type: classifyIPv6(address),
+    reverseDns: reverseDnsIPv6(address)
   };
 }

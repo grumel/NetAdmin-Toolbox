@@ -9,6 +9,7 @@ function resultRows(result) {
     ["Network", `${result.network}/${result.prefix}`],
     ["Last address", result.lastAddress],
     ["Address count", result.addressCount.toString()],
+    ["Reverse DNS", result.reverseDns],
     ["Type", result.type]
   ].map(([label, value]) => `<div class="result-row"><dt>${label}</dt><dd>${value}</dd></div>`).join("");
 }
