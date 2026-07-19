@@ -8,6 +8,7 @@ The format is based on Keep a Changelog and the project follows Semantic Version
 
 ### Added
 
+- PowerShell generator for safe ping and DNS commands.
 - Cisco static-route helper.
 - Cisco OSPF network command helper.
 - Cisco interface name converter.

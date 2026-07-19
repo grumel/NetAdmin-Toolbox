@@ -12,7 +12,8 @@ const definitions = [
   { id:"interface-converter", route:"interface-converter", icon:"IF", name:() => t("network") === "Netzwerk" ? "Interface-Konverter" : "Interface Converter", description:() => t("network") === "Netzwerk" ? "Cisco-Interface-Namen umwandeln." : "Convert Cisco interface names.", keywords:["cisco","interface","gigabitethernet","fastethernet"] },
   { id:"ospf-helper", route:"ospf-helper", icon:"OSPF", name:() => "OSPF Helper", description:() => t("network") === "Netzwerk" ? "OSPF-Netzwerkbefehle erzeugen." : "Generate OSPF network commands.", keywords:["cisco","ospf","routing","wildcard"] },
   { id:"static-route-helper", route:"static-route-helper", icon:"ROUTE", name:() => t("network") === "Netzwerk" ? "Static-Route-Helfer" : "Static Route Helper", description:() => t("network") === "Netzwerk" ? "Statische Cisco-Routen erzeugen." : "Generate Cisco static routes.", keywords:["cisco","route","routing","next hop"] },
-  { id:"vlan-calculator", route:"vlan-calculator", icon:"VLAN", name:() => t("network") === "Netzwerk" ? "VLAN-Rechner" : "VLAN Calculator", description:() => t("network") === "Netzwerk" ? "VLAN-IDs prüfen und Cisco-Konfiguration erzeugen." : "Validate VLAN IDs and generate Cisco configuration.", keywords:["cisco","vlan","switch","trunk","access"] }
+  { id:"vlan-calculator", route:"vlan-calculator", icon:"VLAN", name:() => t("network") === "Netzwerk" ? "VLAN-Rechner" : "VLAN Calculator", description:() => t("network") === "Netzwerk" ? "VLAN-IDs prüfen und Cisco-Konfiguration erzeugen." : "Validate VLAN IDs and generate Cisco configuration.", keywords:["cisco","vlan","switch","trunk","access"] },
+  { id:"powershell-generator", route:"powershell-generator", icon:"PS", name:() => "PowerShell Generator", description:() => t("network") === "Netzwerk" ? "Sichere PowerShell-Befehle erzeugen." : "Generate safe PowerShell commands.", keywords:["windows","powershell","ping","dns"] }
 ];
 
 export function localizedTools() {
