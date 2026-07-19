@@ -1,4 +1,5 @@
 import { initializeCommandPalette } from "./command-palette.js";
+import { initializeLocale, t } from "./i18n.js";
 import { activeRoute, renderNavigation, renderRoute } from "./router.js";
 import { currentTheme, initializeTheme, toggleTheme } from "./theme.js";
 import { findTool } from "./tool-catalog.js";
@@ -23,10 +24,10 @@ async function render() {
 
 function updateConnectionStatus() {
   const online = navigator.onLine;
-  status.textContent = online ? "Online" : "Offline mode";
+  status.textContent = online ? t("online") : t("offline");
   status.classList.toggle("is-offline", !online);
   const dashboardStatus = document.querySelector("#dashboard-connection");
-  if (dashboardStatus) dashboardStatus.textContent = online ? "Online" : "Offline";
+  if (dashboardStatus) dashboardStatus.textContent = online ? t("online") : t("offline");
 }
 
 function setupInstallButton() {
@@ -44,7 +45,7 @@ function setupInstallButton() {
 function updateThemeButton() {
   const dark = currentTheme() === "dark";
   themeToggle.setAttribute("aria-pressed", String(dark));
-  document.querySelector("#theme-toggle-label").textContent = dark ? "Use light mode" : "Use dark mode";
+  document.querySelector("#theme-toggle-label").textContent = dark ? t("useLight") : t("useDark");
 }
 
 themeToggle.addEventListener("click", () => { toggleTheme(); updateThemeButton(); });
@@ -53,6 +54,7 @@ window.addEventListener("online", updateConnectionStatus);
 window.addEventListener("offline", updateConnectionStatus);
 window.addEventListener("beforeinstallprompt", (event) => { event.preventDefault(); deferredInstallPrompt = event; setupInstallButton(); });
 
+initializeLocale();
 initializeTheme();
 updateThemeButton();
 initializeCommandPalette();
