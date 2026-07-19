@@ -8,6 +8,7 @@ The format is based on Keep a Changelog and the project follows Semantic Version
 
 ### Added
 
+- Cisco extended IPv4 ACL generator.
 - IPv6 reverse-DNS names in RFC 3596 nibble format.
 - Shared IPv4, IPv6, CIDR, hostname, and FQDN validation.
 - CSV export for network-tool results.

@@ -6,11 +6,12 @@ const definitions = [
   { id:"subnet-planner", route:"subnet-tools", icon:"SN", nameKey:"tool_subnet_planner_name", descriptionKey:"tool_subnet_planner_description", keywords:["vlsm","wildcard","summary","supernet"] },
   { id:"mac-converter", icon:"MAC", nameKey:"tool_mac_converter_name", descriptionKey:"tool_mac_converter_description", keywords:["mac","oui","cisco","ethernet","address"] },
   { id:"port-search", icon:"PORT", nameKey:"tool_port_search_name", descriptionKey:"tool_port_search_description", keywords:["port","tcp","udp","service","standard ports"] },
-  { id:"dns-reference", icon:"DNS", nameKey:"tool_dns_reference_name", descriptionKey:"tool_dns_reference_description", keywords:["dns","record","a","aaaa","mx","txt","cname","soa","ns","srv","caa","dnssec"] }
+  { id:"dns-reference", icon:"DNS", nameKey:"tool_dns_reference_name", descriptionKey:"tool_dns_reference_description", keywords:["dns","record","a","aaaa","mx","txt","cname","soa","ns","srv","caa","dnssec"] },
+  { id:"acl-generator", route:"acl-generator", icon:"ACL", name:() => t("network") === "Netzwerk" ? "ACL-Generator" : "ACL Generator", description:() => t("network") === "Netzwerk" ? "Cisco Extended-IPv4-Zugriffslisten erstellen." : "Build Cisco extended IPv4 access-control entries.", keywords:["cisco","acl","access list","permit","deny"] }
 ];
 
 export function localizedTools() {
-  return definitions.map((tool) => ({ ...tool, route:tool.route || tool.id, category:t("network"), name:t(tool.nameKey), description:t(tool.descriptionKey) }));
+  return definitions.map((tool) => ({ ...tool, route:tool.route || tool.id, category:t("network"), name:tool.nameKey ? t(tool.nameKey) : typeof tool.name === "function" ? tool.name() : tool.name, description:tool.descriptionKey ? t(tool.descriptionKey) : typeof tool.description === "function" ? tool.description() : tool.description }));
 }
 
 export const tools = new Proxy([], {
