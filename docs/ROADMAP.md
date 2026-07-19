@@ -50,7 +50,7 @@ This roadmap records product milestones. Detailed work items belong in [BACKLOG.
 - [x] ACL generator
 - [x] ACL optimizer
 - [x] VLAN calculator
-- [ ] Interface converter
+- [x] Interface converter
 - [ ] OSPF and static-route helpers
 
 ## 0.6.x — Windows Toolkit
