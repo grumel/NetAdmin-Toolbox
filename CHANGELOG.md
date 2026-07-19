@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 
 The format is based on Keep a Changelog and the project follows Semantic Versioning.
 
+## [Unreleased]
+
+### Added
+
+- Shared IPv4, IPv6, CIDR, hostname, and FQDN validation.
+- CSV export for network-tool results.
+- Print-oriented result layouts and expanded repository documentation.
+
+### Changed
+
+- IPv4 localization, validation feedback, and accessibility coverage.
+- Service-worker caching and offline application-shell handling.
+
 ## [0.5.0] - 2026-07-19
 
 ### Added
@@ -40,4 +53,5 @@ The format is based on Keep a Changelog and the project follows Semantic Version
 - MIT License
 - CHANGELOG
 
+[Unreleased]: https://github.com/grumel/NetAdmin-Toolbox/compare/v0.5.0...HEAD
 [0.5.0]: https://github.com/grumel/NetAdmin-Toolbox/releases/tag/v0.5.0

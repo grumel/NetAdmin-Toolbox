@@ -5,8 +5,8 @@ Run this checklist after changes to `sw.js`, `manifest.json`, the application sh
 ## Preparation
 
 1. Pull the current branch and run `npm test`.
-2. Start a local server with `python3 -m http.server 8000`.
-3. Open `http://localhost:8000/` in a Chromium-based browser.
+2. Start a local server with `python3 -m http.server 8001`.
+3. Open `http://localhost:8001/` in a Chromium-based browser.
 4. Open Developer Tools and select **Application**.
 
 ## Fresh installation
