@@ -1,122 +1,124 @@
 # NetAdmin Toolbox
 
-> A modern, offline-first Progressive Web App for network and system administrators.
+> A browser-based, offline-first toolbox for network and system administrators.
 
-Current version: **0.6.0**
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+![PWA](https://img.shields.io/badge/PWA-installable-5a0)
+![Offline Ready](https://img.shields.io/badge/offline-ready-2ea44f)
+![Browser Based](https://img.shields.io/badge/platform-browser-lightgrey)
 
-## Overview
+NetAdmin Toolbox brings practical network and administration utilities into one privacy-friendly Progressive Web App. It runs entirely in the browser, requires no server component, supports German and English, and remains available offline after the application shell has been cached.
 
-NetAdmin Toolbox combines frequently used administration utilities in a single installable web application. It runs in the browser, stores settings locally, supports German and English, and remains usable offline after the initial load.
+## Screenshot
 
-## Available tools
+![Application Screenshot](docs/images/netadmin-toolbox.png)
+
+## Features
 
 ### Network
 
-- IPv4 calculator for networks, broadcast addresses, host ranges, masks, CIDR and address metadata
-- IPv6 calculator for expansion, compression, classification and prefix calculations
-- Subnet planner with CIDR/wildcard conversion, VLSM planning and route summarization
-- MAC address converter with automatic conversion and address classification
-- Port search for common TCP and UDP services
-- DNS record reference for common DNS record types and their intended use
-- Shared network validation for IPv4, IPv6, CIDR, hostnames, and FQDNs
-- CSV export for network calculator and reference results, compatible with Windows Excel
+- IPv4 Calculator
+- IPv6 Calculator
+- CIDR and wildcard conversion
+- VLSM planning
+- Route summarization
+- Shared IPv4, IPv6, CIDR, hostname, and FQDN validation
 
-### Network result exports
+### DNS
 
-The network tools can export their current results as UTF-8 CSV files with a BOM, semicolon delimiters, CRLF line endings, and RFC4180-compatible quoting. This format opens reliably in Microsoft Excel on Windows as well as LibreOffice and other spreadsheet applications.
+- DNS Record Reference
+- DNS-over-HTTPS Query Helper
 
-| Tool | Exported data |
-| --- | --- |
-| IPv4 Calculator | Address, CIDR, netmask, wildcard, subnet boundaries, and host count |
-| IPv6 Calculator | Address, prefix, network, first/last address, and address count |
-| Subnet Planner | CIDR details, VLSM allocations, and route summaries |
-| Port Search | Port, protocol, service, and description |
-| DNS Record Reference | Name, type, TTL field, and record example |
+### Utilities
 
-## Application features
+- MAC Address Converter
+- Standard Port Search
 
-- Installable Progressive Web App
-- Offline application shell and cached tool modules
-- Responsive dashboard
-- Search and command palette
+### Application
+
+- Installable PWA with offline cache
+- Responsive light and dark interface
+- Modular hash router and dashboard
 - Favorites and recently used tools
-- Light and dark appearance
-- German and English interface
-- Local settings import and export
-- No tracking and no required backend
+- Settings import and export
+- German and English localization
+- Print-optimized result pages
+- Shared CSV export for network-tool results
 
-## Technology
+## Installation
+
+NetAdmin Toolbox is a static web application. No production server or dependency installation is required.
+
+    git clone https://github.com/grumel/NetAdmin-Toolbox.git
+    cd NetAdmin-Toolbox
+
+Serve the repository through a local HTTP server:
+
+    python3 -m http.server 8000
+
+Open [http://localhost:8000](http://localhost:8000) in a modern browser. A local HTTP server is recommended because service workers are not enabled for ordinary file pages.
+
+Run the automated tests with Node.js 20 or newer:
+
+    npm test
+
+## Offline Support
+
+The service worker precaches the application shell and known tool modules, then caches approved same-origin static assets after successful requests. Navigations use a network-first strategy with an offline shell fallback. Cache versions are updated when the application shell changes.
+
+## CSV Export
+
+Network tools provide a consistent **Export CSV** action. Files use UTF-8 with a BOM, semicolon delimiters, CRLF line endings, and RFC 4180-compatible quoting for reliable use in Excel and LibreOffice.
+
+## Print Support
+
+Calculation and result views include print-oriented styling. Unnecessary controls are hidden for printing, while result tables and summaries remain readable on paper or as PDF.
+
+## Localization
+
+The interface is available in English and German. Language selection is stored locally and tool views use the shared localization layer so labels and results update consistently.
+
+## Technology Stack
 
 - HTML5
 - CSS3
-- JavaScript with ES modules
-- Service Worker
+- JavaScript with native ES modules
+- Service Worker API
 - Web App Manifest
-- Node.js test runner
+- Node.js built-in test runner
 
-## Architecture
+No external runtime libraries or frameworks are required.
 
-The application is a static single-page PWA. The hash-based router dynamically loads modules from `modules/`, while the service worker caches the application shell for offline use.
+## Project Structure
 
-Network tools separate user interface code from pure calculations and reusable helpers. Shared modules currently provide:
+    assets/
+      css/                 Global styles
+      js/                  Application shell, router, state, and localization
+    modules/
+      dashboard/           Dashboard
+      network/             Network tools and shared validation
+      shared/              Cross-tool utilities such as CSV export
+    tests/                 Automated unit and platform tests
+    docs/                  Architecture, roadmap, testing, and project guidance
+    sw.js                  Service worker and application-shell cache
+    index.html             PWA entry point
+    manifest.json          Web App Manifest
 
-- IPv4, IPv6, CIDR, hostname, and FQDN validation in `modules/network/shared/validation.js`
-- CSV generation and browser downloads in `modules/shared/csv-export.js`
+Tool modules keep UI, validation, calculations, formatting, and reusable helpers separate. This keeps calculations testable and allows future tools to reuse the same network primitives.
 
-This structure keeps calculation logic testable without a browser and allows future tools to reuse the same validation and export behaviour.
+## Roadmap
 
-## Development
+Planned work is tracked in [docs/ROADMAP.md](docs/ROADMAP.md) and [docs/BACKLOG.md](docs/BACKLOG.md). The next planned milestones are:
 
-The supported development and test runtime is Node.js 20 or newer, up to but not including Node.js 25. The `.nvmrc` file selects Node.js 20 for local development.
-
-```bash
-nvm install
-nvm use
-npm test
-```
-
-The application has no required runtime dependencies. Serve the repository through a local HTTP server for browser and PWA testing:
-
-```bash
-python3 -m http.server 8000
-```
-
-Then open `http://localhost:8000`.
-
-### Test coverage
-
-The test suite covers network calculations, shared validation, CSV escaping and downloads, PWA configuration, localization, routing, security headers, and product discovery.
-
-```bash
-npm test
-git diff --check
-```
-
-Browser-focused IPv4 interaction checks are available under `tests/browser/` and can be run from a locally served project when validating UI changes.
-
-## Documentation
-
-- [Roadmap](docs/ROADMAP.md) — completed milestones and planned work
-- [Backlog](docs/BACKLOG.md) — prioritised engineering work
-- [Architecture](docs/ARCHITECTURE.md) — application shell and module contracts
-- [Coding standard](docs/CODING_STANDARD.md) — implementation and accessibility rules
-- [Test plan](docs/TESTPLAN.md) — automated, manual, and release checks
-- [Contributing](docs/CONTRIBUTING.md) — contribution workflow and review expectations
-- [Architecture decisions](docs/adr/) — recorded technical decisions
-
-## Project status
-
-Version 0.6.0 centralizes network input validation and CSV export for current and future tools while preserving the offline-capable network toolbox foundation.
-
-See [ROADMAP.md](docs/ROADMAP.md) for completed milestones, current work and planned releases. Release details are recorded in [CHANGELOG.md](docs/CHANGELOG.md).
-
-## Browser limitations
-
-A browser cannot send raw ICMP echo requests or perform unrestricted TCP port scans. Tools that require direct network access therefore need either browser-compatible techniques or an optional local companion service. The core application remains fully client-side and offline-capable.
+- IPv4 hardening, including expanded RFC range coverage, accessibility refinement, browser tests, and cache-policy review
+- Additional Cisco administration tools such as ACL, VLAN, interface, and routing helpers
+- Windows and Linux administration utilities
+- Security and developer tools
+- Accessibility, performance, and supported-browser verification for the 1.0 release
 
 ## License
 
-MIT License
+NetAdmin Toolbox is released under the [MIT License](LICENSE).
 
 ## Author
 
