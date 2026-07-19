@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [20, 22, 24]
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm test
+
+  package:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v6
+      - name: Create static application artifact
+        run: |
+          mkdir -p release
+          tar --exclude=.git --exclude=release --exclude=node_modules -czf release/netadmin-toolbox.tar.gz .
+      - uses: actions/upload-artifact@v7
+        with:
+          name: netadmin-toolbox-static
+          path: release/netadmin-toolbox.tar.gz

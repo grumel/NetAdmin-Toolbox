@@ -37,7 +37,12 @@ This roadmap records product milestones. Detailed work items belong in [BACKLOG.
 - [ ] Wildcard converter
 - [ ] VLSM designer
 - [ ] Subnet planner
-- [ ] Export to text, JSON and CSV
+- [ ] Export to text and JSON
+
+## 0.6.0 — Shared Network Foundations
+
+- [x] Shared IPv4, IPv6, CIDR, hostname, and FQDN validation
+- [x] Shared CSV export for network-tool results
 
 ## 0.5.x — Routing and Cisco
 

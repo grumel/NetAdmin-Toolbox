@@ -6,6 +6,7 @@ All notable project changes should be recorded here. The format follows Keep a C
 
 ### Added
 
+- Improved IPv4 validation error contrast in the light theme.
 - Long-term product vision
 - Product roadmap and prioritized backlog
 - Architecture and coding standards
