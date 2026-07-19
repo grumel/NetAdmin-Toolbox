@@ -49,7 +49,7 @@ This roadmap records product milestones. Detailed work items belong in [BACKLOG.
 - [x] Route summarization
 - [x] ACL generator
 - [ ] ACL optimizer
-- [ ] VLAN calculator
+- [x] VLAN calculator
 - [ ] Interface converter
 - [ ] OSPF and static-route helpers
 
