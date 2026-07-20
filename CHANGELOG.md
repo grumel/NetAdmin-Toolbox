@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on Keep a Changelog and the project follows Semantic Versioning.
 
 ## [Unreleased]
+- Added a dependency-free YAML indentation formatter.
 
 - Added a local JSON formatter and validator.
 
