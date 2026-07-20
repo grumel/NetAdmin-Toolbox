@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on Keep a Changelog and the project follows Semantic Versioning.
 
 ## [Unreleased]
+- Added a local systemd service-unit builder.
 - Added a local cron entry generator.
 - Added a local chmod permission calculator.
 - Added a local URL component encoder and decoder.

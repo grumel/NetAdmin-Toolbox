@@ -35,13 +35,14 @@ const definitions = [
   { id:"uuid-generator", route:"uuid-generator", icon:"UUID", name:() => "UUID Generator", description:() => t("network") === "Netzwerk" ? "Sichere UUIDs lokal erzeugen." : "Generate secure UUIDs locally.", keywords:["developer","uuid","guid","random"] },
   { id:"url-encoder", route:"url-encoder", icon:"URL", name:() => "URL Encoder", description:() => t("network") === "Netzwerk" ? "URL-Komponenten lokal kodieren." : "Encode URL components locally.", keywords:["developer","url","encode","decode","percent"] },
   { id:"chmod-calculator", route:"chmod-calculator", icon:"CHMOD", name:() => "chmod Calculator", description:() => t("network") === "Netzwerk" ? "Unix-Berechtigungen umwandeln." : "Convert Unix permissions.", keywords:["linux","chmod","permissions","octal"] },
-  { id:"cron-generator", route:"cron-generator", icon:"CRON", name:() => "Cron Generator", description:() => t("network") === "Netzwerk" ? "Cron-Zeilen erzeugen." : "Generate cron entries.", keywords:["linux","cron","schedule","job"] }
+  { id:"cron-generator", route:"cron-generator", icon:"CRON", name:() => "Cron Generator", description:() => t("network") === "Netzwerk" ? "Cron-Zeilen erzeugen." : "Generate cron entries.", keywords:["linux","cron","schedule","job"] },
+  { id:"systemd-builder", route:"systemd-builder", icon:"SYSTEMD", name:() => "systemd Builder", description:() => t("network") === "Netzwerk" ? "systemd-Service-Units erzeugen." : "Generate systemd service units.", keywords:["linux","systemd","service","unit"] }
 ];
 
 const categoryByTool = new Map([
   ["acl-generator", "cisco"], ["acl-optimizer", "cisco"], ["vlan-calculator", "cisco"], ["interface-converter", "cisco"], ["ospf-helper", "cisco"], ["static-route-helper", "cisco"], ["stp-helper", "cisco"], ["qos-helper", "cisco"], ["vxlan-helper", "cisco"], ["mpls-helper", "cisco"],
   ["powershell-generator", "windows"], ["sid-guid-helper", "windows"], ["dhcp-helper", "windows"], ["registry-helper", "windows"],
-  ["password-generator", "security"], ["hash-generator", "security"], ["json-formatter", "developer"], ["yaml-formatter", "developer"], ["xml-formatter", "developer"], ["regex-tester", "developer"], ["uuid-generator", "developer"], ["url-encoder", "developer"], ["chmod-calculator", "linux"], ["cron-generator", "linux"]
+  ["password-generator", "security"], ["hash-generator", "security"], ["json-formatter", "developer"], ["yaml-formatter", "developer"], ["xml-formatter", "developer"], ["regex-tester", "developer"], ["uuid-generator", "developer"], ["url-encoder", "developer"], ["chmod-calculator", "linux"], ["cron-generator", "linux"], ["systemd-builder", "linux"]
 ]);
 
 function categoryLabel(category) {
