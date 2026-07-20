@@ -96,6 +96,7 @@ This roadmap records product milestones. Detailed work items belong in [BACKLOG.
 - [x] QoS helper
 - [x] VXLAN helper
 - [x] MPLS helper
+- [x] IPv6 prefix delegation
 
 ## 1.0.0 — Stable
 

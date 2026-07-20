@@ -11,7 +11,7 @@ function createStorage() {
 }
 
 test("tool search matches names, descriptions and keywords", () => {
-  assert.deepEqual(searchTools("ipv6").map(({ id }) => id), ["ipv6"]);
+  assert.deepEqual(searchTools("ipv6").map(({ id }) => id), ["ipv6", "ipv6-prefix-delegation"]);
   assert.deepEqual(searchTools("wildcard summary").map(({ id }) => id), ["subnet-planner"]);
   assert.equal(searchTools("does-not-exist").length, 0);
 });
