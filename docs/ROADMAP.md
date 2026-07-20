@@ -98,6 +98,10 @@ This roadmap records product milestones. Detailed work items belong in [BACKLOG.
 - [x] MPLS helper
 - [x] IPv6 prefix delegation
 
+## 1.2.x — Security Tools
+
+- [x] Password generator
+
 ## 1.0.0 — Stable
 
 - [x] Release candidate preparation
