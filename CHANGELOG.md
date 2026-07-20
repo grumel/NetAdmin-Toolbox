@@ -8,6 +8,7 @@ The format is based on Keep a Changelog and the project follows Semantic Version
 
 ### Added
 
+- Local cryptographic password generator.
 - IPv6 prefix delegation helper.
 - Cisco MPLS label configuration helper.
 - Cisco VXLAN NVE configuration helper.
