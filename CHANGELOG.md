@@ -6,6 +6,8 @@ The format is based on Keep a Changelog and the project follows Semantic Version
 
 ## [Unreleased]
 
+- Added a local JSON formatter and validator.
+
 ### Added
 
 - Local Base64 encoder and decoder.

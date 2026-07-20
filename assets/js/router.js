@@ -1,4 +1,5 @@
 const routes = {
+  "json-formatter": () => import("../../modules/developer/json-formatter/index.js"),
   dashboard: () => import("../../modules/dashboard/index.js"),
   network: () => import("../../modules/network/index.js"),
   ipv4: () => import("../../modules/network/ipv4/index.js"),
