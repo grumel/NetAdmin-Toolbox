@@ -84,7 +84,7 @@ This roadmap records product milestones. Detailed work items belong in [BACKLOG.
 - [x] Keyboard shortcuts and command palette
 - [x] Import and export
 - [x] Settings and localization foundation
-- [ ] Full accessibility and performance audit
+- [x] Accessibility and performance baseline
 
 ## 0.9.x — Network Diagnostics
 

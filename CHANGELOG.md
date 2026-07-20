@@ -8,6 +8,7 @@ The format is based on Keep a Changelog and the project follows Semantic Version
 
 ### Added
 
+- Accessibility and performance baseline documentation with catalog checks.
 - Local network diagnostics for IPv4 addresses and hostnames.
 - Windows PowerShell registry helper.
 - Windows DHCP scope helper.
