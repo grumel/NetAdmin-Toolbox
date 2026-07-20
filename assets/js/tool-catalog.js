@@ -20,7 +20,8 @@ const definitions = [
   { id:"network-diagnostics", route:"network-diagnostics", icon:"DIAG", name:() => t("network") === "Netzwerk" ? "Netzwerkdiagnose" : "Network Diagnostics", description:() => t("network") === "Netzwerk" ? "IPv4-Adressen und Hostnamen lokal analysieren." : "Analyze IPv4 addresses and hostnames locally.", keywords:["diagnostics","network","ipv4","hostname"] },
   { id:"stp-helper", route:"stp-helper", icon:"STP", name:() => "STP Helper", description:() => t("network") === "Netzwerk" ? "Cisco-Spanning-Tree-Befehle erzeugen." : "Generate Cisco Spanning Tree commands.", keywords:["cisco","stp","spanning tree","root"] },
   { id:"qos-helper", route:"qos-helper", icon:"QOS", name:() => "QoS Helper", description:() => t("network") === "Netzwerk" ? "Cisco-QoS-Befehle erzeugen." : "Generate Cisco QoS commands.", keywords:["cisco","qos","dscp","priority"] },
-  { id:"vxlan-helper", route:"vxlan-helper", icon:"VX", name:() => "VXLAN Helper", description:() => t("network") === "Netzwerk" ? "Cisco-VXLAN-Befehle erzeugen." : "Generate Cisco VXLAN commands.", keywords:["cisco","vxlan","nve","vni"] }
+  { id:"vxlan-helper", route:"vxlan-helper", icon:"VX", name:() => "VXLAN Helper", description:() => t("network") === "Netzwerk" ? "Cisco-VXLAN-Befehle erzeugen." : "Generate Cisco VXLAN commands.", keywords:["cisco","vxlan","nve","vni"] },
+  { id:"mpls-helper", route:"mpls-helper", icon:"MPLS", name:() => "MPLS Helper", description:() => t("network") === "Netzwerk" ? "Cisco-MPLS-Befehle erzeugen." : "Generate Cisco MPLS commands.", keywords:["cisco","mpls","ldp","labels"] }
 ];
 
 export function localizedTools() {

@@ -95,6 +95,7 @@ This roadmap records product milestones. Detailed work items belong in [BACKLOG.
 - [x] STP helper
 - [x] QoS helper
 - [x] VXLAN helper
+- [x] MPLS helper
 
 ## 1.0.0 — Stable
 

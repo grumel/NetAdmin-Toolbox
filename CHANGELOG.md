@@ -8,6 +8,7 @@ The format is based on Keep a Changelog and the project follows Semantic Version
 
 ### Added
 
+- Cisco MPLS label configuration helper.
 - Cisco VXLAN NVE configuration helper.
 - Cisco QoS classification and priority helper.
 - Cisco STP helper for root-role and priority commands.
