@@ -18,7 +18,8 @@ const definitions = [
   { id:"dhcp-helper", route:"dhcp-helper", icon:"DHCP", name:() => "DHCP Helper", description:() => t("network") === "Netzwerk" ? "Windows-DHCP-Bereiche erzeugen." : "Generate Windows DHCP scopes.", keywords:["windows","dhcp","scope","powershell"] },
   { id:"registry-helper", route:"registry-helper", icon:"REG", name:() => "Registry Helper", description:() => t("network") === "Netzwerk" ? "PowerShell-Registry-Befehle erzeugen." : "Generate PowerShell registry commands.", keywords:["windows","registry","powershell","hklm"] },
   { id:"network-diagnostics", route:"network-diagnostics", icon:"DIAG", name:() => t("network") === "Netzwerk" ? "Netzwerkdiagnose" : "Network Diagnostics", description:() => t("network") === "Netzwerk" ? "IPv4-Adressen und Hostnamen lokal analysieren." : "Analyze IPv4 addresses and hostnames locally.", keywords:["diagnostics","network","ipv4","hostname"] },
-  { id:"stp-helper", route:"stp-helper", icon:"STP", name:() => "STP Helper", description:() => t("network") === "Netzwerk" ? "Cisco-Spanning-Tree-Befehle erzeugen." : "Generate Cisco Spanning Tree commands.", keywords:["cisco","stp","spanning tree","root"] }
+  { id:"stp-helper", route:"stp-helper", icon:"STP", name:() => "STP Helper", description:() => t("network") === "Netzwerk" ? "Cisco-Spanning-Tree-Befehle erzeugen." : "Generate Cisco Spanning Tree commands.", keywords:["cisco","stp","spanning tree","root"] },
+  { id:"qos-helper", route:"qos-helper", icon:"QOS", name:() => "QoS Helper", description:() => t("network") === "Netzwerk" ? "Cisco-QoS-Befehle erzeugen." : "Generate Cisco QoS commands.", keywords:["cisco","qos","dscp","priority"] }
 ];
 
 export function localizedTools() {

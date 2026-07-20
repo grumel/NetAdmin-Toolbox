@@ -93,6 +93,7 @@ This roadmap records product milestones. Detailed work items belong in [BACKLOG.
 ## 1.1.x — Advanced Networking
 
 - [x] STP helper
+- [x] QoS helper
 
 ## 1.0.0 — Stable
 
