@@ -79,7 +79,7 @@ This roadmap records product milestones. Detailed work items belong in [BACKLOG.
 - [x] XML formatter
 - [x] Regex tester
 - [x] UUID generator
-- [ ] URL tools
+- [x] URL encoder
 
 ## 0.9.x — Product Experience
 
