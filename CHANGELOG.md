@@ -8,6 +8,7 @@ The format is based on Keep a Changelog and the project follows Semantic Version
 
 ### Added
 
+- Local network diagnostics for IPv4 addresses and hostnames.
 - Windows PowerShell registry helper.
 - Windows DHCP scope helper.
 - Windows SID parser and GUID v4 generator.
