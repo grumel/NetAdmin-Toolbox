@@ -26,7 +26,8 @@ const definitions = [
   { id:"password-generator", route:"password-generator", icon:"PW", name:() => t("network") === "Netzwerk" ? "Passwortgenerator" : "Password Generator", description:() => t("network") === "Netzwerk" ? "Zufällige Passwörter lokal erzeugen." : "Generate random passwords locally.", keywords:["security","password","random","crypto"] },
   { id:"hash-generator", route:"hash-generator", icon:"HASH", name:() => t("network") === "Netzwerk" ? "Hashgenerator" : "Hash Generator", description:() => t("network") === "Netzwerk" ? "Text lokal mit SHA hashen." : "Hash text locally with SHA algorithms.", keywords:["security","hash","sha256","sha512"] },
   { id:"certificate-inspector", route:"certificate-inspector", icon:"CERT", name:() => t("network") === "Netzwerk" ? "Zertifikatsinspektor" : "Certificate Inspector", description:() => t("network") === "Netzwerk" ? "PEM-Zertifikate lokal prüfen." : "Inspect PEM certificates locally.", keywords:["security","certificate","pem","tls"] },
-  { id:"jwt-decoder", route:"jwt-decoder", icon:"JWT", name:() => "JWT Decoder", description:() => t("network") === "Netzwerk" ? "JWT-Header und Payload lokal dekodieren." : "Decode JWT headers and payloads locally.", keywords:["security","jwt","json web token","token"] }
+  { id:"jwt-decoder", route:"jwt-decoder", icon:"JWT", name:() => "JWT Decoder", description:() => t("network") === "Netzwerk" ? "JWT-Header und Payload lokal dekodieren." : "Decode JWT headers and payloads locally.", keywords:["security","jwt","json web token","token"] },
+  { id:"base64-tool", route:"base64-tool", icon:"B64", name:() => "Base64 Tool", description:() => t("network") === "Netzwerk" ? "Text lokal mit Base64 kodieren." : "Encode and decode text with Base64 locally.", keywords:["security","base64","encoding","decoding"] }
 ];
 
 const categoryByTool = new Map([

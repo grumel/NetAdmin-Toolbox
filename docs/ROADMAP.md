@@ -104,6 +104,7 @@ This roadmap records product milestones. Detailed work items belong in [BACKLOG.
 - [x] Hash generator
 - [x] Certificate inspector
 - [x] JWT decoder
+- [x] Base64 tool
 
 ## 1.0.0 — Stable
 
