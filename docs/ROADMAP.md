@@ -59,7 +59,7 @@ This roadmap records product milestones. Detailed work items belong in [BACKLOG.
 - [x] PowerShell generators
 - [x] SID and GUID helpers
 - [x] DNS and DHCP tools
-- [ ] Registry helpers
+- [x] Registry helpers
 
 ## 0.7.x — Linux Toolkit
 
