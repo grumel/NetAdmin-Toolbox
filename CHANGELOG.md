@@ -8,6 +8,7 @@ The format is based on Keep a Changelog and the project follows Semantic Version
 
 ### Added
 
+- Windows DHCP scope helper.
 - Windows SID parser and GUID v4 generator.
 - PowerShell generator for safe ping and DNS commands.
 - Cisco static-route helper.
