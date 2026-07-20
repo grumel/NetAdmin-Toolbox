@@ -86,6 +86,10 @@ This roadmap records product milestones. Detailed work items belong in [BACKLOG.
 - [x] Settings and localization foundation
 - [ ] Full accessibility and performance audit
 
+## 0.9.x — Network Diagnostics
+
+- [x] Local IPv4 and hostname diagnostics
+
 ## 1.0.0 — Stable
 
 - [ ] Release candidate

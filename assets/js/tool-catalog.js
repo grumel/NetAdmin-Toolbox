@@ -16,7 +16,8 @@ const definitions = [
   { id:"powershell-generator", route:"powershell-generator", icon:"PS", name:() => "PowerShell Generator", description:() => t("network") === "Netzwerk" ? "Sichere PowerShell-Befehle erzeugen." : "Generate safe PowerShell commands.", keywords:["windows","powershell","ping","dns"] },
   { id:"sid-guid-helper", route:"sid-guid-helper", icon:"SID", name:() => "SID / GUID Helper", description:() => t("network") === "Netzwerk" ? "Windows-SIDs und GUIDs bearbeiten." : "Inspect Windows SIDs and generate GUIDs.", keywords:["windows","sid","guid","uuid"] },
   { id:"dhcp-helper", route:"dhcp-helper", icon:"DHCP", name:() => "DHCP Helper", description:() => t("network") === "Netzwerk" ? "Windows-DHCP-Bereiche erzeugen." : "Generate Windows DHCP scopes.", keywords:["windows","dhcp","scope","powershell"] },
-  { id:"registry-helper", route:"registry-helper", icon:"REG", name:() => "Registry Helper", description:() => t("network") === "Netzwerk" ? "PowerShell-Registry-Befehle erzeugen." : "Generate PowerShell registry commands.", keywords:["windows","registry","powershell","hklm"] }
+  { id:"registry-helper", route:"registry-helper", icon:"REG", name:() => "Registry Helper", description:() => t("network") === "Netzwerk" ? "PowerShell-Registry-Befehle erzeugen." : "Generate PowerShell registry commands.", keywords:["windows","registry","powershell","hklm"] },
+  { id:"network-diagnostics", route:"network-diagnostics", icon:"DIAG", name:() => t("network") === "Netzwerk" ? "Netzwerkdiagnose" : "Network Diagnostics", description:() => t("network") === "Netzwerk" ? "IPv4-Adressen und Hostnamen lokal analysieren." : "Analyze IPv4 addresses and hostnames locally.", keywords:["diagnostics","network","ipv4","hostname"] }
 ];
 
 export function localizedTools() {
