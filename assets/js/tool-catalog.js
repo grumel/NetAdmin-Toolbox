@@ -28,13 +28,14 @@ const definitions = [
   { id:"certificate-inspector", route:"certificate-inspector", icon:"CERT", name:() => t("network") === "Netzwerk" ? "Zertifikatsinspektor" : "Certificate Inspector", description:() => t("network") === "Netzwerk" ? "PEM-Zertifikate lokal prüfen." : "Inspect PEM certificates locally.", keywords:["security","certificate","pem","tls"] },
   { id:"jwt-decoder", route:"jwt-decoder", icon:"JWT", name:() => "JWT Decoder", description:() => t("network") === "Netzwerk" ? "JWT-Header und Payload lokal dekodieren." : "Decode JWT headers and payloads locally.", keywords:["security","jwt","json web token","token"] },
   { id:"base64-tool", route:"base64-tool", icon:"B64", name:() => "Base64 Tool", description:() => t("network") === "Netzwerk" ? "Text lokal mit Base64 kodieren." : "Encode and decode text with Base64 locally.", keywords:["security","base64","encoding","decoding"] },
-  { id:"json-formatter", route:"json-formatter", icon:"JSON", name:() => "JSON Formatter", description:() => t("network") === "Netzwerk" ? "JSON lokal prüfen und formatieren." : "Validate and format JSON locally.", keywords:["developer","json","format","validate"] }
+  { id:"json-formatter", route:"json-formatter", icon:"JSON", name:() => "JSON Formatter", description:() => t("network") === "Netzwerk" ? "JSON lokal prüfen und formatieren." : "Validate and format JSON locally.", keywords:["developer","json","format","validate"] },
+  { id:"yaml-formatter", route:"yaml-formatter", icon:"YAML", name:() => "YAML Formatter", description:() => t("network") === "Netzwerk" ? "YAML lokal formatieren." : "Format YAML locally.", keywords:["developer","yaml","format"] }
 ];
 
 const categoryByTool = new Map([
   ["acl-generator", "cisco"], ["acl-optimizer", "cisco"], ["vlan-calculator", "cisco"], ["interface-converter", "cisco"], ["ospf-helper", "cisco"], ["static-route-helper", "cisco"], ["stp-helper", "cisco"], ["qos-helper", "cisco"], ["vxlan-helper", "cisco"], ["mpls-helper", "cisco"],
   ["powershell-generator", "windows"], ["sid-guid-helper", "windows"], ["dhcp-helper", "windows"], ["registry-helper", "windows"],
-  ["password-generator", "security"], ["hash-generator", "security"], ["json-formatter", "developer"]
+  ["password-generator", "security"], ["hash-generator", "security"], ["json-formatter", "developer"], ["yaml-formatter", "developer"]
 ]);
 
 function categoryLabel(category) {

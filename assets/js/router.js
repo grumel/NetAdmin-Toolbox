@@ -1,4 +1,5 @@
 const routes = {
+  "yaml-formatter": () => import("../../modules/developer/yaml-formatter/index.js"),
   "json-formatter": () => import("../../modules/developer/json-formatter/index.js"),
   dashboard: () => import("../../modules/dashboard/index.js"),
   network: () => import("../../modules/network/index.js"),
