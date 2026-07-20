@@ -8,6 +8,7 @@ The format is based on Keep a Changelog and the project follows Semantic Version
 
 ### Added
 
+- Local Web Crypto hash generator.
 - Local cryptographic password generator.
 - IPv6 prefix delegation helper.
 - Cisco MPLS label configuration helper.
