@@ -3,6 +3,7 @@ import { t } from "./i18n.js";
 const definitions = [
   { id:"ipv4", icon:"IP", nameKey:"tool_ipv4_name", descriptionKey:"tool_ipv4_description", keywords:["subnet","cidr","netmask","broadcast"] },
   { id:"ipv6", icon:"v6", nameKey:"tool_ipv6_name", descriptionKey:"tool_ipv6_description", keywords:["ipv6","prefix","network"] },
+  { id:"ipv6-prefix-delegation", route:"ipv6-prefix-delegation", icon:"PD", name:() => t("network") === "Netzwerk" ? "IPv6-Präfixdelegation" : "IPv6 Prefix Delegation", description:() => t("network") === "Netzwerk" ? "IPv6-Präfixe in Child-Netze aufteilen." : "Split IPv6 prefixes into child networks.", keywords:["ipv6","prefix","delegation","subnet"] },
   { id:"subnet-planner", route:"subnet-tools", icon:"SN", nameKey:"tool_subnet_planner_name", descriptionKey:"tool_subnet_planner_description", keywords:["vlsm","wildcard","summary","supernet"] },
   { id:"mac-converter", icon:"MAC", nameKey:"tool_mac_converter_name", descriptionKey:"tool_mac_converter_description", keywords:["mac","oui","cisco","ethernet","address"] },
   { id:"port-search", icon:"PORT", nameKey:"tool_port_search_name", descriptionKey:"tool_port_search_description", keywords:["port","tcp","udp","service","standard ports"] },

@@ -3,6 +3,7 @@ const routes = {
   network: () => import("../../modules/network/index.js"),
   ipv4: () => import("../../modules/network/ipv4/index.js"),
   ipv6: () => import("../../modules/network/ipv6/index.js"),
+  "ipv6-prefix-delegation": () => import("../../modules/network/ipv6/prefix-delegation/index.js"),
   "subnet-tools": () => import("../../modules/network/subnet-tools/index.js"),
   "mac-converter": () => import("../../modules/network/mac-converter/index.js"),
   "port-search": () => import("../../modules/network/port-search/index.js"),
