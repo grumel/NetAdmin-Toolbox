@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { searchTools } from "../../assets/js/tool-catalog.js";
+import { localizedTools, searchTools } from "../../assets/js/tool-catalog.js";
 
 function createStorage() {
   const values = new Map();
@@ -14,6 +14,13 @@ test("tool search matches names, descriptions and keywords", () => {
   assert.deepEqual(searchTools("ipv6").map(({ id }) => id), ["ipv6", "ipv6-prefix-delegation"]);
   assert.deepEqual(searchTools("wildcard summary").map(({ id }) => id), ["subnet-planner"]);
   assert.equal(searchTools("does-not-exist").length, 0);
+});
+
+test("tools are assigned to their owning product category", () => {
+  assert.equal(localizedTools().find(({ id }) => id === "ipv4").category, "Network");
+  assert.equal(localizedTools().find(({ id }) => id === "acl-generator").category, "Cisco");
+  assert.equal(localizedTools().find(({ id }) => id === "powershell-generator").category, "Windows");
+  assert.equal(localizedTools().find(({ id }) => id === "password-generator").category, "Security");
 });
 
 test("favorites and recents persist in namespaced storage", async () => {
