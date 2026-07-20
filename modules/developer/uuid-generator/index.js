@@ -1,0 +1,4 @@
+import { generateUuid } from "../uuid-generator.js";
+import { t } from "../../assets/js/i18n.js";
+export function render() { const de = t("network") === "Netzwerk"; return `<section><header class="page-header"><div><p class="eyebrow">${de ? "Entwicklung" : "Developer"}</p><h1>UUID Generator</h1><p class="page-summary">${de ? "Sichere UUIDs lokal erzeugen." : "Generate secure UUIDs locally."}</p></div></header><section class="card tool-workspace"><button id="uuid-generate" type="button">${de ? "UUID erzeugen" : "Generate UUID"}</button><output id="uuid-output" aria-live="polite"></output></section></section>`; }
+export function initialize(container) { const output = container.querySelector("#uuid-output"); container.querySelector("#uuid-generate").addEventListener("click", () => { try { output.textContent = generateUuid(); } catch (exception) { output.textContent = exception.message; } }); }
