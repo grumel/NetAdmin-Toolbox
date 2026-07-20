@@ -57,7 +57,7 @@ This roadmap records product milestones. Detailed work items belong in [BACKLOG.
 ## 0.6.x — Windows Toolkit
 
 - [x] PowerShell generators
-- [ ] SID and GUID helpers
+- [x] SID and GUID helpers
 - [ ] DNS and DHCP tools
 - [ ] Registry helpers
 
