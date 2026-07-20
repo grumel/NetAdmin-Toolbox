@@ -33,13 +33,14 @@ const definitions = [
   { id:"xml-formatter", route:"xml-formatter", icon:"XML", name:() => "XML Formatter", description:() => t("network") === "Netzwerk" ? "XML lokal formatieren." : "Format XML locally.", keywords:["developer","xml","format"] },
   { id:"regex-tester", route:"regex-tester", icon:"REGEX", name:() => "Regex Tester", description:() => t("network") === "Netzwerk" ? "Reguläre Ausdrücke lokal testen." : "Test regular expressions locally.", keywords:["developer","regex","pattern","match"] },
   { id:"uuid-generator", route:"uuid-generator", icon:"UUID", name:() => "UUID Generator", description:() => t("network") === "Netzwerk" ? "Sichere UUIDs lokal erzeugen." : "Generate secure UUIDs locally.", keywords:["developer","uuid","guid","random"] },
-  { id:"url-encoder", route:"url-encoder", icon:"URL", name:() => "URL Encoder", description:() => t("network") === "Netzwerk" ? "URL-Komponenten lokal kodieren." : "Encode URL components locally.", keywords:["developer","url","encode","decode","percent"] }
+  { id:"url-encoder", route:"url-encoder", icon:"URL", name:() => "URL Encoder", description:() => t("network") === "Netzwerk" ? "URL-Komponenten lokal kodieren." : "Encode URL components locally.", keywords:["developer","url","encode","decode","percent"] },
+  { id:"chmod-calculator", route:"chmod-calculator", icon:"CHMOD", name:() => "chmod Calculator", description:() => t("network") === "Netzwerk" ? "Unix-Berechtigungen umwandeln." : "Convert Unix permissions.", keywords:["linux","chmod","permissions","octal"] }
 ];
 
 const categoryByTool = new Map([
   ["acl-generator", "cisco"], ["acl-optimizer", "cisco"], ["vlan-calculator", "cisco"], ["interface-converter", "cisco"], ["ospf-helper", "cisco"], ["static-route-helper", "cisco"], ["stp-helper", "cisco"], ["qos-helper", "cisco"], ["vxlan-helper", "cisco"], ["mpls-helper", "cisco"],
   ["powershell-generator", "windows"], ["sid-guid-helper", "windows"], ["dhcp-helper", "windows"], ["registry-helper", "windows"],
-  ["password-generator", "security"], ["hash-generator", "security"], ["json-formatter", "developer"], ["yaml-formatter", "developer"], ["xml-formatter", "developer"], ["regex-tester", "developer"], ["uuid-generator", "developer"], ["url-encoder", "developer"]
+  ["password-generator", "security"], ["hash-generator", "security"], ["json-formatter", "developer"], ["yaml-formatter", "developer"], ["xml-formatter", "developer"], ["regex-tester", "developer"], ["uuid-generator", "developer"], ["url-encoder", "developer"], ["chmod-calculator", "linux"]
 ]);
 
 function categoryLabel(category) {

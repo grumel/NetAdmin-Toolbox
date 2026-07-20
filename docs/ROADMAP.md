@@ -63,7 +63,7 @@ This roadmap records product milestones. Detailed work items belong in [BACKLOG.
 
 ## 0.7.x — Linux Toolkit
 
-- [ ] chmod calculator
+- [x] chmod calculator
 - [ ] cron generator
 - [ ] systemd builder
 - [ ] SSH configuration helper
