@@ -14,7 +14,8 @@ const definitions = [
   { id:"static-route-helper", route:"static-route-helper", icon:"ROUTE", name:() => t("network") === "Netzwerk" ? "Static-Route-Helfer" : "Static Route Helper", description:() => t("network") === "Netzwerk" ? "Statische Cisco-Routen erzeugen." : "Generate Cisco static routes.", keywords:["cisco","route","routing","next hop"] },
   { id:"vlan-calculator", route:"vlan-calculator", icon:"VLAN", name:() => t("network") === "Netzwerk" ? "VLAN-Rechner" : "VLAN Calculator", description:() => t("network") === "Netzwerk" ? "VLAN-IDs prüfen und Cisco-Konfiguration erzeugen." : "Validate VLAN IDs and generate Cisco configuration.", keywords:["cisco","vlan","switch","trunk","access"] },
   { id:"powershell-generator", route:"powershell-generator", icon:"PS", name:() => "PowerShell Generator", description:() => t("network") === "Netzwerk" ? "Sichere PowerShell-Befehle erzeugen." : "Generate safe PowerShell commands.", keywords:["windows","powershell","ping","dns"] },
-  { id:"sid-guid-helper", route:"sid-guid-helper", icon:"SID", name:() => "SID / GUID Helper", description:() => t("network") === "Netzwerk" ? "Windows-SIDs und GUIDs bearbeiten." : "Inspect Windows SIDs and generate GUIDs.", keywords:["windows","sid","guid","uuid"] }
+  { id:"sid-guid-helper", route:"sid-guid-helper", icon:"SID", name:() => "SID / GUID Helper", description:() => t("network") === "Netzwerk" ? "Windows-SIDs und GUIDs bearbeiten." : "Inspect Windows SIDs and generate GUIDs.", keywords:["windows","sid","guid","uuid"] },
+  { id:"dhcp-helper", route:"dhcp-helper", icon:"DHCP", name:() => "DHCP Helper", description:() => t("network") === "Netzwerk" ? "Windows-DHCP-Bereiche erzeugen." : "Generate Windows DHCP scopes.", keywords:["windows","dhcp","scope","powershell"] }
 ];
 
 export function localizedTools() {
