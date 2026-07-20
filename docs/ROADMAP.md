@@ -92,7 +92,7 @@ This roadmap records product milestones. Detailed work items belong in [BACKLOG.
 
 ## 1.0.0 — Stable
 
-- [ ] Release candidate
+- [x] Release candidate preparation
 - [ ] Complete documentation
 - [x] Supported-browser verification
 - [x] Offline and installability verification

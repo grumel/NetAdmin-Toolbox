@@ -8,6 +8,7 @@ The format is based on Keep a Changelog and the project follows Semantic Version
 
 ### Added
 
+- Versioned release-candidate checklist and metadata test.
 - Offline and installability release verification guide and test.
 - Supported-browser matrix and verification guidance.
 - Accessibility and performance baseline documentation with catalog checks.
