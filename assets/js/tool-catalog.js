@@ -24,7 +24,8 @@ const definitions = [
   { id:"vxlan-helper", route:"vxlan-helper", icon:"VX", name:() => "VXLAN Helper", description:() => t("network") === "Netzwerk" ? "Cisco-VXLAN-Befehle erzeugen." : "Generate Cisco VXLAN commands.", keywords:["cisco","vxlan","nve","vni"] },
   { id:"mpls-helper", route:"mpls-helper", icon:"MPLS", name:() => "MPLS Helper", description:() => t("network") === "Netzwerk" ? "Cisco-MPLS-Befehle erzeugen." : "Generate Cisco MPLS commands.", keywords:["cisco","mpls","ldp","labels"] },
   { id:"password-generator", route:"password-generator", icon:"PW", name:() => t("network") === "Netzwerk" ? "Passwortgenerator" : "Password Generator", description:() => t("network") === "Netzwerk" ? "Zufällige Passwörter lokal erzeugen." : "Generate random passwords locally.", keywords:["security","password","random","crypto"] },
-  { id:"hash-generator", route:"hash-generator", icon:"HASH", name:() => t("network") === "Netzwerk" ? "Hashgenerator" : "Hash Generator", description:() => t("network") === "Netzwerk" ? "Text lokal mit SHA hashen." : "Hash text locally with SHA algorithms.", keywords:["security","hash","sha256","sha512"] }
+  { id:"hash-generator", route:"hash-generator", icon:"HASH", name:() => t("network") === "Netzwerk" ? "Hashgenerator" : "Hash Generator", description:() => t("network") === "Netzwerk" ? "Text lokal mit SHA hashen." : "Hash text locally with SHA algorithms.", keywords:["security","hash","sha256","sha512"] },
+  { id:"certificate-inspector", route:"certificate-inspector", icon:"CERT", name:() => t("network") === "Netzwerk" ? "Zertifikatsinspektor" : "Certificate Inspector", description:() => t("network") === "Netzwerk" ? "PEM-Zertifikate lokal prüfen." : "Inspect PEM certificates locally.", keywords:["security","certificate","pem","tls"] }
 ];
 
 const categoryByTool = new Map([
