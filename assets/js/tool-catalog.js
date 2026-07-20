@@ -54,7 +54,7 @@ function categoryLabel(category) {
 }
 
 export function localizedTools() {
-  return definitions.map((tool) => { const category = categoryByTool.get(tool.id) || "network"; return { ...tool, route:tool.route || tool.id, category:categoryLabel(category), name:tool.nameKey ? t(tool.nameKey) : typeof tool.name === "function" ? tool.name() : tool.name, description:tool.descriptionKey ? t(tool.descriptionKey) : typeof tool.description === "function" ? tool.description() : tool.description }; });
+  return definitions.map((tool) => { const categoryId = categoryByTool.get(tool.id) || "network"; return { ...tool, route:tool.route || tool.id, categoryId, category:categoryLabel(categoryId), name:tool.nameKey ? t(tool.nameKey) : typeof tool.name === "function" ? tool.name() : tool.name, description:tool.descriptionKey ? t(tool.descriptionKey) : typeof tool.description === "function" ? tool.description() : tool.description }; });
 }
 
 export const tools = new Proxy([], {
