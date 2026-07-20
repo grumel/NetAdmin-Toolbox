@@ -1,1 +1,5 @@
-export function render() { return `<section class="module-empty"><header class="page-header"><div><p class="eyebrow">Tool module</p><h1>Windows</h1><p class="page-summary">Windows tools will appear here.</p></div></header></section>`; }
+import { renderCategoryPage } from "../shared/category-page.js";
+
+export function render() {
+  return renderCategoryPage({ category: "Windows", title: "Windows", summary: "Tools for Windows administration and PowerShell workflows." });
+}
