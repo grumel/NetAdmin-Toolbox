@@ -1,4 +1,5 @@
 const routes = {
+  "regex-tester": () => import("../../modules/developer/regex-tester/index.js"),
   "xml-formatter": () => import("../../modules/developer/xml-formatter/index.js"),
   "yaml-formatter": () => import("../../modules/developer/yaml-formatter/index.js"),
   "json-formatter": () => import("../../modules/developer/json-formatter/index.js"),

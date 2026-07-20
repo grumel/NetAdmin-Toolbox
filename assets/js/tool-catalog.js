@@ -30,13 +30,14 @@ const definitions = [
   { id:"base64-tool", route:"base64-tool", icon:"B64", name:() => "Base64 Tool", description:() => t("network") === "Netzwerk" ? "Text lokal mit Base64 kodieren." : "Encode and decode text with Base64 locally.", keywords:["security","base64","encoding","decoding"] },
   { id:"json-formatter", route:"json-formatter", icon:"JSON", name:() => "JSON Formatter", description:() => t("network") === "Netzwerk" ? "JSON lokal prüfen und formatieren." : "Validate and format JSON locally.", keywords:["developer","json","format","validate"] },
   { id:"yaml-formatter", route:"yaml-formatter", icon:"YAML", name:() => "YAML Formatter", description:() => t("network") === "Netzwerk" ? "YAML lokal formatieren." : "Format YAML locally.", keywords:["developer","yaml","format"] },
-  { id:"xml-formatter", route:"xml-formatter", icon:"XML", name:() => "XML Formatter", description:() => t("network") === "Netzwerk" ? "XML lokal formatieren." : "Format XML locally.", keywords:["developer","xml","format"] }
+  { id:"xml-formatter", route:"xml-formatter", icon:"XML", name:() => "XML Formatter", description:() => t("network") === "Netzwerk" ? "XML lokal formatieren." : "Format XML locally.", keywords:["developer","xml","format"] },
+  { id:"regex-tester", route:"regex-tester", icon:"REGEX", name:() => "Regex Tester", description:() => t("network") === "Netzwerk" ? "Reguläre Ausdrücke lokal testen." : "Test regular expressions locally.", keywords:["developer","regex","pattern","match"] }
 ];
 
 const categoryByTool = new Map([
   ["acl-generator", "cisco"], ["acl-optimizer", "cisco"], ["vlan-calculator", "cisco"], ["interface-converter", "cisco"], ["ospf-helper", "cisco"], ["static-route-helper", "cisco"], ["stp-helper", "cisco"], ["qos-helper", "cisco"], ["vxlan-helper", "cisco"], ["mpls-helper", "cisco"],
   ["powershell-generator", "windows"], ["sid-guid-helper", "windows"], ["dhcp-helper", "windows"], ["registry-helper", "windows"],
-  ["password-generator", "security"], ["hash-generator", "security"], ["json-formatter", "developer"], ["yaml-formatter", "developer"], ["xml-formatter", "developer"]
+  ["password-generator", "security"], ["hash-generator", "security"], ["json-formatter", "developer"], ["yaml-formatter", "developer"], ["xml-formatter", "developer"], ["regex-tester", "developer"]
 ]);
 
 function categoryLabel(category) {

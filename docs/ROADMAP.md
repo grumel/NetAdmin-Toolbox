@@ -77,7 +77,8 @@ This roadmap records product milestones. Detailed work items belong in [BACKLOG.
 - [x] JSON formatter
 - [x] YAML formatter
 - [x] XML formatter
-- [ ] Regex, UUID and URL tools
+- [x] Regex tester
+- [ ] UUID and URL tools
 
 ## 0.9.x — Product Experience
 
