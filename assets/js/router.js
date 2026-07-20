@@ -1,4 +1,5 @@
 const routes = {
+  "ssh-config-helper": () => import("../../modules/linux/ssh-config-helper/index.js"),
   "systemd-builder": () => import("../../modules/linux/systemd-builder/index.js"),
   "cron-generator": () => import("../../modules/linux/cron-generator/index.js"),
   "chmod-calculator": () => import("../../modules/linux/chmod-calculator/index.js"),
