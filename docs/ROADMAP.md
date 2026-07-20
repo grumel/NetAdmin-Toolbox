@@ -65,15 +65,15 @@ This roadmap records product milestones. Detailed work items belong in [BACKLOG.
 
 - [x] chmod calculator
 - [x] cron generator
-- [ ] systemd builder
+- [x] systemd builder
 - [ ] SSH configuration helper
 - [ ] nftables and iptables helpers
 
 ## 0.8.x — Security and Developer Toolkit
 
-- [ ] Password and hash utilities
-- [ ] Certificate inspector
-- [ ] JWT and Base64 tools
+- [x] Password and hash utilities
+- [x] Certificate inspector
+- [x] JWT and Base64 tools
 - [x] JSON formatter
 - [x] YAML formatter
 - [x] XML formatter
