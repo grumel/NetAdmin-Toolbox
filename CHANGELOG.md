@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on Keep a Changelog and the project follows Semantic Versioning.
 
 ## [Unreleased]
+- Completed the Linux administration toolkit and stable-release documentation baseline.
 - Added a local nftables/iptables firewall rule helper.
 - Added a local OpenSSH configuration helper.
 - Added a local systemd service-unit builder.
