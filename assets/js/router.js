@@ -1,4 +1,5 @@
 const routes = {
+  "cron-generator": () => import("../../modules/linux/cron-generator/index.js"),
   "chmod-calculator": () => import("../../modules/linux/chmod-calculator/index.js"),
   "url-encoder": () => import("../../modules/developer/url-encoder/index.js"),
   "uuid-generator": () => import("../../modules/developer/uuid-generator/index.js"),
