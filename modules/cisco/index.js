@@ -1,1 +1,5 @@
-export function render() { return `<section class="module-empty"><header class="page-header"><div><p class="eyebrow">Tool module</p><h1>Cisco</h1><p class="page-summary">Cisco tools will appear here.</p></div></header></section>`; }
+import { renderCategoryPage } from "../shared/category-page.js";
+
+export function render() {
+  return renderCategoryPage({ category: "Cisco", title: "Cisco", summary: "Tools for Cisco switching, routing, and network configuration." });
+}

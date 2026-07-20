@@ -1,1 +1,5 @@
-export function render() { return `<section class="module-empty"><header class="page-header"><div><p class="eyebrow">Tool module</p><h1>Security</h1><p class="page-summary">Security tools will appear here.</p></div></header></section>`; }
+import { renderCategoryPage } from "../shared/category-page.js";
+
+export function render() {
+  return renderCategoryPage({ category: "Security", title: "Security", summary: "Local tools for passwords, hashes, certificates, tokens, and encodings." });
+}
