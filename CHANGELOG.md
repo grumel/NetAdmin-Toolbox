@@ -8,6 +8,7 @@ The format is based on Keep a Changelog and the project follows Semantic Version
 
 ### Added
 
+- Local JWT header and payload decoder.
 - Local PEM certificate inspector.
 - Local Web Crypto hash generator.
 - Local cryptographic password generator.
