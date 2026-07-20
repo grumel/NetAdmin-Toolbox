@@ -27,8 +27,20 @@ const definitions = [
   { id:"hash-generator", route:"hash-generator", icon:"HASH", name:() => t("network") === "Netzwerk" ? "Hashgenerator" : "Hash Generator", description:() => t("network") === "Netzwerk" ? "Text lokal mit SHA hashen." : "Hash text locally with SHA algorithms.", keywords:["security","hash","sha256","sha512"] }
 ];
 
+const categoryByTool = new Map([
+  ["acl-generator", "cisco"], ["acl-optimizer", "cisco"], ["vlan-calculator", "cisco"], ["interface-converter", "cisco"], ["ospf-helper", "cisco"], ["static-route-helper", "cisco"], ["stp-helper", "cisco"], ["qos-helper", "cisco"], ["vxlan-helper", "cisco"], ["mpls-helper", "cisco"],
+  ["powershell-generator", "windows"], ["sid-guid-helper", "windows"], ["dhcp-helper", "windows"], ["registry-helper", "windows"],
+  ["password-generator", "security"], ["hash-generator", "security"]
+]);
+
+function categoryLabel(category) {
+  const german = t("network") === "Netzwerk";
+  const labels = german ? { network: "Netzwerk", cisco: "Cisco", windows: "Windows", linux: "Linux", security: "Sicherheit", developer: "Entwicklung" } : { network: "Network", cisco: "Cisco", windows: "Windows", linux: "Linux", security: "Security", developer: "Developer" };
+  return labels[category] || labels.network;
+}
+
 export function localizedTools() {
-  return definitions.map((tool) => ({ ...tool, route:tool.route || tool.id, category:t("network"), name:tool.nameKey ? t(tool.nameKey) : typeof tool.name === "function" ? tool.name() : tool.name, description:tool.descriptionKey ? t(tool.descriptionKey) : typeof tool.description === "function" ? tool.description() : tool.description }));
+  return definitions.map((tool) => { const category = categoryByTool.get(tool.id) || "network"; return { ...tool, route:tool.route || tool.id, category:categoryLabel(category), name:tool.nameKey ? t(tool.nameKey) : typeof tool.name === "function" ? tool.name() : tool.name, description:tool.descriptionKey ? t(tool.descriptionKey) : typeof tool.description === "function" ? tool.description() : tool.description }; });
 }
 
 export const tools = new Proxy([], {
