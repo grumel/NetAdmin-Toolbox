@@ -101,6 +101,7 @@ This roadmap records product milestones. Detailed work items belong in [BACKLOG.
 ## 1.2.x — Security Tools
 
 - [x] Password generator
+- [x] Hash generator
 
 ## 1.0.0 — Stable
 
