@@ -23,6 +23,11 @@ test("tools are assigned to their owning product category", () => {
   assert.equal(localizedTools().find(({ id }) => id === "password-generator").category, "Security");
 });
 
+test("tools retain stable category identifiers across localization", () => {
+  assert.equal(localizedTools().find(({ id }) => id === "password-generator").categoryId, "security");
+  assert.equal(localizedTools().find(({ id }) => id === "json-formatter").categoryId, "developer");
+});
+
 test("favorites and recents persist in namespaced storage", async () => {
   global.localStorage = createStorage();
   const state = await import(`../../assets/js/tool-state.js?test=${Date.now()}`);
