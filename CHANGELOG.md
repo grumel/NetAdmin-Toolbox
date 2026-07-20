@@ -8,6 +8,7 @@ The format is based on Keep a Changelog and the project follows Semantic Version
 
 ### Added
 
+- Offline and installability release verification guide and test.
 - Supported-browser matrix and verification guidance.
 - Accessibility and performance baseline documentation with catalog checks.
 - Local network diagnostics for IPv4 addresses and hostnames.
