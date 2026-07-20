@@ -90,6 +90,10 @@ This roadmap records product milestones. Detailed work items belong in [BACKLOG.
 
 - [x] Local IPv4 and hostname diagnostics
 
+## 1.1.x — Advanced Networking
+
+- [x] STP helper
+
 ## 1.0.0 — Stable
 
 - [x] Release candidate preparation

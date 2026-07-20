@@ -8,6 +8,7 @@ The format is based on Keep a Changelog and the project follows Semantic Version
 
 ### Added
 
+- Cisco STP helper for root-role and priority commands.
 - Versioned release-candidate checklist and metadata test.
 - Offline and installability release verification guide and test.
 - Supported-browser matrix and verification guidance.
