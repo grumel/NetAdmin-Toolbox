@@ -67,7 +67,7 @@ This roadmap records product milestones. Detailed work items belong in [BACKLOG.
 - [x] cron generator
 - [x] systemd builder
 - [x] SSH configuration helper
-- [ ] nftables and iptables helpers
+- [x] nftables and iptables helpers
 
 ## 0.8.x — Security and Developer Toolkit
 
