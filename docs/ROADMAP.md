@@ -74,7 +74,8 @@ This roadmap records product milestones. Detailed work items belong in [BACKLOG.
 - [ ] Password and hash utilities
 - [ ] Certificate inspector
 - [ ] JWT and Base64 tools
-- [ ] JSON, YAML and XML formatters
+- [x] JSON formatter
+- [ ] YAML and XML formatters
 - [ ] Regex, UUID and URL tools
 
 ## 0.9.x — Product Experience
