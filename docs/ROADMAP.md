@@ -103,6 +103,7 @@ This roadmap records product milestones. Detailed work items belong in [BACKLOG.
 - [x] Password generator
 - [x] Hash generator
 - [x] Certificate inspector
+- [x] JWT decoder
 
 ## 1.0.0 — Stable
 
