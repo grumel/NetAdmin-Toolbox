@@ -31,13 +31,14 @@ const definitions = [
   { id:"json-formatter", route:"json-formatter", icon:"JSON", name:() => "JSON Formatter", description:() => t("network") === "Netzwerk" ? "JSON lokal prüfen und formatieren." : "Validate and format JSON locally.", keywords:["developer","json","format","validate"] },
   { id:"yaml-formatter", route:"yaml-formatter", icon:"YAML", name:() => "YAML Formatter", description:() => t("network") === "Netzwerk" ? "YAML lokal formatieren." : "Format YAML locally.", keywords:["developer","yaml","format"] },
   { id:"xml-formatter", route:"xml-formatter", icon:"XML", name:() => "XML Formatter", description:() => t("network") === "Netzwerk" ? "XML lokal formatieren." : "Format XML locally.", keywords:["developer","xml","format"] },
-  { id:"regex-tester", route:"regex-tester", icon:"REGEX", name:() => "Regex Tester", description:() => t("network") === "Netzwerk" ? "Reguläre Ausdrücke lokal testen." : "Test regular expressions locally.", keywords:["developer","regex","pattern","match"] }
+  { id:"regex-tester", route:"regex-tester", icon:"REGEX", name:() => "Regex Tester", description:() => t("network") === "Netzwerk" ? "Reguläre Ausdrücke lokal testen." : "Test regular expressions locally.", keywords:["developer","regex","pattern","match"] },
+  { id:"uuid-generator", route:"uuid-generator", icon:"UUID", name:() => "UUID Generator", description:() => t("network") === "Netzwerk" ? "Sichere UUIDs lokal erzeugen." : "Generate secure UUIDs locally.", keywords:["developer","uuid","guid","random"] }
 ];
 
 const categoryByTool = new Map([
   ["acl-generator", "cisco"], ["acl-optimizer", "cisco"], ["vlan-calculator", "cisco"], ["interface-converter", "cisco"], ["ospf-helper", "cisco"], ["static-route-helper", "cisco"], ["stp-helper", "cisco"], ["qos-helper", "cisco"], ["vxlan-helper", "cisco"], ["mpls-helper", "cisco"],
   ["powershell-generator", "windows"], ["sid-guid-helper", "windows"], ["dhcp-helper", "windows"], ["registry-helper", "windows"],
-  ["password-generator", "security"], ["hash-generator", "security"], ["json-formatter", "developer"], ["yaml-formatter", "developer"], ["xml-formatter", "developer"], ["regex-tester", "developer"]
+  ["password-generator", "security"], ["hash-generator", "security"], ["json-formatter", "developer"], ["yaml-formatter", "developer"], ["xml-formatter", "developer"], ["regex-tester", "developer"], ["uuid-generator", "developer"]
 ]);
 
 function categoryLabel(category) {
